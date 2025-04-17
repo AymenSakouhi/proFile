@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { SearchForm } from '@/components/search-form'
 import { VersionSwitcher } from '@/components/version-switcher'
+import { NavUser } from './nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -13,11 +14,17 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  SidebarFooter,
 } from '@/components/ui/sidebar'
 
 // This is sample data.
 const data = {
   versions: ['1.0.1', '1.1.0-alpha', '2.0.0-beta1'],
+  user: {
+    name: 'shadcn',
+    email: 'm@example.com',
+    avatar: '/avatars/shadcn.jpg',
+  },
   navMain: [
     {
       title: 'Getting Started',
@@ -66,6 +73,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroup>
         ))}
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={data.user} />
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )
