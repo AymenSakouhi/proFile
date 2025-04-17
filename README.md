@@ -50,7 +50,7 @@ I’m working through the following resources to support development and deepen 
 1. [🧠 Project Brief](https://chatgpt.com/canvas/shared/67fef54fab3081918a0890ec5bae39cd)
 2. [📹 Full-Stack File Uploads (JS Mastery)](https://www.youtube.com/watch?v=Zq5fmkH0T78&ab_channel=JavaScriptMastery)
 3. [📖 Next.js Streaming & Loading Docs](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
-4. [📹 Next.js 14 Authentication Tutorial (Kodaps Academy)](https://www.youtube.com/watch?v=jEJEFAc8tSI&ab_channel=KodapsAcademy)
+4. [📹 SSR vs RSC)](https://www.youtube.com/watch?v=jEJEFAc8tSI&ab_channel=KodapsAcademy)
 
 ## 🚀 Deployment
 
