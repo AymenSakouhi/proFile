@@ -5,7 +5,7 @@ export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request)
 
   if (!sessionCookie) {
-    return NextResponse.redirect(new URL('/', request.url))
+    return NextResponse.redirect(new URL('/signin', request.url))
   }
 
   return NextResponse.next()
@@ -20,7 +20,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico, sitemap.xml, robots.txt (metadata files)
      */
-    '/dashboard/:path*',
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+    '/((?!signin|signup|api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
   ],
 }
