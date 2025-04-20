@@ -4,14 +4,50 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { githubSignIn } from '@/lib/auth-client'
+import { useForm } from '@tanstack/react-form'
+import { z } from 'zod'
+
+import { githubSignIn, signIn } from '@/lib/auth-client'
+
+const signInSchema = z.object({
+  email: z.string().email({
+    message: 'This should be a valid email',
+  }),
+  password: z.string().min(8, {
+    message: 'Min password length is 8',
+  }),
+})
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'form'>) {
+  const { handleSubmit, Field } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+    validators: {
+      onChange: signInSchema,
+    },
+    onSubmit: async ({ value }) => {
+      await signIn.email({
+        email: value.email,
+        password: value.password,
+      })
+    },
+  })
+
   return (
-    <form className={cn('flex flex-col gap-6', className)} {...props}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        handleSubmit()
+      }}
+      className={cn('flex flex-col gap-6', className)}
+      {...props}
+    >
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-2xl font-bold">Login to your account</h1>
         <p className="text-muted-foreground text-sm text-balance">
@@ -19,21 +55,56 @@ export function LoginForm({
         </p>
       </div>
       <div className="grid gap-6">
+        <Field name="email">
+          {(field) => (
+            <div className="grid gap-3">
+              <Label htmlFor={'email'}>Email</Label>
+              <Input
+                id={field.name}
+                name={field.name}
+                value={field.state.value}
+                type="email"
+                onChange={(e) => field.handleChange(e.target.value)}
+                placeholder="hello@something.com"
+              />
+              {field.state.meta.errors ? (
+                <em className="text-red-500" role="alert">
+                  {field.state.meta.errors
+                    .map((error) => error?.message)
+                    .join('')}
+                </em>
+              ) : null}
+            </div>
+          )}
+        </Field>
         <div className="grid gap-3">
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
-        </div>
-        <div className="grid gap-3">
-          <div className="flex items-center">
-            <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </a>
-          </div>
-          <Input id="password" type="password" required />
+          <Field name="password">
+            {(field) => (
+              <div className="flex flex-col gap-2 justify-start">
+                <Label htmlFor={field.name}>Password</Label>
+                <Input
+                  id={field.name}
+                  name={field.name}
+                  value={field.state.value}
+                  type="password"
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+                {field.state.meta.errors ? (
+                  <em className="text-red-500" role="alert">
+                    {field.state.meta.errors
+                      .map((error) => error?.message)
+                      .join('')}
+                  </em>
+                ) : null}
+                <a
+                  href="#"
+                  className="text-sm underline-offset-4 hover:underline"
+                >
+                  Forgot your password?
+                </a>
+              </div>
+            )}
+          </Field>
         </div>
         <Button type="submit" className="w-full">
           Login
