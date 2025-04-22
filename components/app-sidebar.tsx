@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react'
 
 import { SearchForm } from '@/components/search-form'
@@ -16,6 +17,8 @@ import {
   SidebarRail,
   SidebarFooter,
 } from '@/components/ui/sidebar'
+
+import { useSession } from '@/lib/auth-client'
 
 // This is sample data.
 const data = {
@@ -45,6 +48,7 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: userData } = useSession()
   return (
     <Sidebar {...props}>
       <SidebarHeader>
@@ -74,7 +78,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={userData?.user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
