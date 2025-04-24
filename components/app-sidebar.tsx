@@ -2,7 +2,6 @@
 import * as React from 'react'
 
 import { SearchForm } from '@/components/search-form'
-import { VersionSwitcher } from '@/components/version-switcher'
 import { NavUser } from './nav-user'
 import {
   Sidebar,
@@ -19,6 +18,7 @@ import {
 } from '@/components/ui/sidebar'
 
 import { useSession } from '@/lib/auth-client'
+import { File } from 'lucide-react'
 
 // This is sample data.
 const data = {
@@ -26,7 +26,7 @@ const data = {
   user: {
     name: 'shadcn',
     email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
+    avatar: 'https://api.dicebear.com/7.x/pixel-art/svg',
   },
   navMain: [
     {
@@ -34,12 +34,12 @@ const data = {
       url: '#',
       items: [
         {
-          title: 'Installation',
+          title: 'Documentation',
           url: '#',
           isActive: true,
         },
         {
-          title: 'Project Structure',
+          title: 'Upload your file',
           url: '#',
         },
       ],
@@ -52,10 +52,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <VersionSwitcher
-          versions={data.versions}
-          defaultVersion={data.versions[0]}
-        />
+        <div className="flex my-2 gap-4 pl-2">
+          <File className="size-4" />
+          <div className="flex flex-col gap-0.5 leading-none">
+            <span className="font-medium">PROFILE</span>
+          </div>
+        </div>
         <SearchForm />
       </SidebarHeader>
       <SidebarContent>
