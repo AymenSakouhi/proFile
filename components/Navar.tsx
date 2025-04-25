@@ -29,9 +29,9 @@ const NavBar = () => {
           {isLast ? (
             <BreadcrumbPage>{part}</BreadcrumbPage>
           ) : (
-            <BreadcrumbLink>
-              <Link href={href}>{part}</Link>
-            </BreadcrumbLink>
+            // <BreadcrumbLink>
+            <Link href={href}>{part}</Link>
+            // </BreadcrumbLink>
           )}
         </BreadcrumbItem>
         {!isLast && <BreadcrumbSeparator className={'hidden md:block'} />}

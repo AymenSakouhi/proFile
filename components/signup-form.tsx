@@ -64,7 +64,7 @@ export function SignUpForm({
           <Field name="name">
             {(field) => (
               <div className="grid gap-3">
-                <Label htmlFor={'email'}>Name</Label>
+                <Label htmlFor={'name'}>Name</Label>
                 <Input
                   id={field.name}
                   name={field.name}
