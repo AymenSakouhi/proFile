@@ -16,6 +16,7 @@ import {
   SidebarRail,
   SidebarFooter,
 } from '@/components/ui/sidebar'
+import Link from 'next/link'
 
 import { useSession } from '@/lib/auth-client'
 import { File } from 'lucide-react'
@@ -40,7 +41,7 @@ const data = {
         },
         {
           title: 'Upload your file',
-          url: '#',
+          url: '/dashboard/fileupload',
         },
       ],
     },
@@ -70,7 +71,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild isActive={item.isActive}>
-                      <a href={item.url}>{item.title}</a>
+                      <Link href={item.url}>{item.title}</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}

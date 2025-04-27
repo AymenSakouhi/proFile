@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { toast } from 'sonner'
 
 function FileIcon(props: Record<string, unknown>) {
   return (
@@ -32,11 +33,19 @@ const FileUpload = () => {
     if (!file) return
     const formData = new FormData()
     formData.append('file', file)
-    console.log('formdata', formData)
-    await fetch('/api/upload', {
-      method: 'POST',
-      body: formData,
-    })
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      })
+      if (!response.ok) {
+        throw new Error('Upload failed')
+      }
+      toast.success('File uploaded successfully')
+    } catch (e) {
+      toast.error('Failed to upload the file')
+      console.log(e)
+    }
   }
 
   return (
