@@ -4,6 +4,7 @@
 
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { NextRequest } from 'next/server'
+import { customAlphabet } from 'nanoid'
 
 const s3 = new S3Client({
   region: 'eu-central-1',
@@ -36,7 +37,8 @@ export async function POST(req: NextRequest) {
 
   const buffer = Buffer.from(await file.arrayBuffer())
 
-  const filename = `${Date.now}${file.name}`
+  const nanoid = customAlphabet('1234567890abcdef', 10)
+  const filename = `${nanoid()}${file.name}`
 
   const response = await uploadToS3(buffer, filename)
   console.log(response)
