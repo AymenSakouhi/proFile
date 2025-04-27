@@ -1,11 +1,104 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
+import Image from 'next/image'
+
+import Dropzone, { DropzoneState } from 'shadcn-dropzone'
+
+import { FileWithPath, useDropzone } from 'react-dropzone'
+
+const thumbsContainer = {
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  marginTop: 16,
+}
+
+const thumb = {
+  display: 'inline-flex',
+  borderRadius: 2,
+  border: '1px solid #eaeaea',
+  marginBottom: 8,
+  marginRight: 8,
+  width: 100,
+  height: 100,
+  padding: 4,
+  boxSizing: 'border-box',
+}
+
+const thumbInner = {
+  display: 'flex',
+  minWidth: 0,
+  overflow: 'hidden',
+}
+
+const img = {
+  display: 'block',
+  width: 'auto',
+  height: '100%',
+}
+
+function Previews() {
+  const [files, setFiles] = useState<<FileWithPath && preview: string>[]>([])
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/*': [],
+    },
+    onDrop: (acceptedFiles: File[]) => {
+      console.log(acceptedFiles)
+      setFiles(
+        acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          }),
+        ),
+      )
+    },
+  })
+
+  const thumbs = files.map((file) => (
+    <div
+      className="inline-flex broder-2 border-amber-200 mb-2 mr-2"
+      key={file.name}
+    >
+      <div style={thumbInner}>
+        <Image
+          width={100}
+          height={100}
+          alt="whatever"
+          src={file.preview}
+          style={img}
+          // Revoke data uri after image is loaded
+          onLoad={() => {
+            URL.revokeObjectURL(file.preview)
+          }}
+        />
+      </div>
+    </div>
+  ))
+
+  useEffect(() => {
+    // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+    return () => files.forEach((file) => URL.revokeObjectURL(file.preview))
+  }, [files])
+
+  return (
+    <section className="container">
+      <div {...getRootProps({ className: 'dropzone' })}>
+        <input {...getInputProps()} max={1} />
+        <p>Drag and drop some files here, or click to select files</p>
+      </div>
+      <aside style={thumbsContainer}>{thumbs}</aside>
+    </section>
+  )
+}
+
+;<Previews />
 
 function FileIcon(props: Record<string, unknown>) {
   return (
@@ -29,7 +122,7 @@ function FileIcon(props: Record<string, unknown>) {
 
 const FileUpload = () => {
   const [file, setFile] = React.useState<File | undefined>()
-  const handleUploadFile = async (file) => {
+  const handleUploadFile = async (file: File) => {
     if (!file) return
     const formData = new FormData()
     formData.append('file', file)
@@ -44,7 +137,7 @@ const FileUpload = () => {
       toast.success('File uploaded successfully')
     } catch (e) {
       toast.error('Failed to upload the file')
-      console.log(e)
+      console.error(e)
     }
   }
 
@@ -52,15 +145,37 @@ const FileUpload = () => {
     <>
       <Card className="m-6">
         <CardContent className="p-6 space-y-4">
-          <div className="border-2 border-dashed border-gray-200 rounded-lg flex flex-col gap-1 p-6 items-center">
-            <FileIcon className="w-12 h-12" />
-            <span className="text-sm font-medium text-gray-500">
-              Drag and drop a file or click to browse
-            </span>
-            <span className="text-xs text-gray-500">
-              PDF, image, video, or audio
-            </span>
-          </div>
+          <Previews />
+          {/* <Dropzone
+              maxFiles={1}
+              onDrop={(acceptedFiles: File[]) => {
+                // Do something with the files
+                handleUploadFile(acceptedFiles[0])
+              }}
+            >
+              {(dropzone: DropzoneState) => (
+                <div className="p-6 space-y-4">
+                  <div className="rounded-lg flex flex-col gap-1 p-6 items-center">
+                    <FileIcon className="w-12 h-12" />
+                    {dropzone.isDragAccept ? (
+                      <div className="text-sm font-medium">
+                        Drop your file here!
+                      </div>
+                    ) : (
+                      <div className="flex items-center flex-col gap-1.5">
+                        <div className="flex items-center flex-row gap-0.5 text-sm font-medium">
+                          Upload one file at a time
+                        </div>
+                      </div>
+                    )}
+                    <div className="text-xs text-gray-400 font-medium">
+                      {dropzone.acceptedFiles.length} files uploaded so far.
+                    </div>
+                  </div>
+                </div>
+              )}
+            </Dropzone> */}
+
           <div className="space-y-2 text-sm">
             <Label htmlFor="file" className="text-sm font-medium">
               File
@@ -78,10 +193,10 @@ const FileUpload = () => {
         </CardContent>
         <CardFooter>
           <Button
+            disabled={!!file}
             size="lg"
             onClick={async () => {
-              console.log('formdata', file)
-              await handleUploadFile(file)
+              await handleUploadFile(file!)
             }}
           >
             Upload
