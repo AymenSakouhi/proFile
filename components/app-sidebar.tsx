@@ -32,16 +32,15 @@ const data = {
   navMain: [
     {
       title: 'Getting Started',
-      url: '#',
       items: [
         {
           title: 'Documentation',
-          url: '#',
-          isActive: true,
+          url: '/documentation',
         },
         {
           title: 'Upload your file',
           url: '/dashboard/fileupload',
+          isActive: true,
         },
       ],
     },
@@ -50,6 +49,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: userData } = useSession()
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>

@@ -2,9 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import Image from 'next/image'
 
@@ -12,6 +9,26 @@ import { useDropzone } from 'react-dropzone'
 
 function Previews() {
   const [files, setFiles] = useState<(File & { preview: string })[]>([])
+
+  const handleUploadFile = async (file: File) => {
+    if (!file) return
+    const formData = new FormData()
+    formData.append('file', file)
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      })
+      if (!response.ok) {
+        throw new Error('Upload failed')
+      }
+      toast.success('File uploaded successfully')
+    } catch (e) {
+      toast.error('Failed to upload the file')
+      console.error(e)
+    }
+  }
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
       'image/*': [],
@@ -41,6 +58,9 @@ function Previews() {
           // Revoke data uri after image is loaded
           onLoad={() => {
             URL.revokeObjectURL(file.preview)
+            if (file) {
+              handleUploadFile(file)
+            }
           }}
         />
       </div>
@@ -98,67 +118,22 @@ function FileIcon(props: Record<string, unknown>) {
 }
 
 const FileUpload = () => {
-  const [file, setFile] = React.useState<File | undefined>()
-  const handleUploadFile = async (file: File) => {
-    if (!file) return
-    const formData = new FormData()
-    formData.append('file', file)
-    try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      })
-      if (!response.ok) {
-        throw new Error('Upload failed')
-      }
-      toast.success('File uploaded successfully')
-    } catch (e) {
-      toast.error('Failed to upload the file')
-      console.error(e)
-    }
-  }
-
   return (
     <>
       <Card className="m-6">
         <CardContent className="p-6 space-y-4">
           <Previews />
-          {/* <Dropzone
-              maxFiles={1}
-              onDrop={(acceptedFiles: File[]) => {
-                // Do something with the files
-                handleUploadFile(acceptedFiles[0])
-              }}
-            >
-              {(dropzone: DropzoneState) => (
-              )}
-            </Dropzone> */}
-
-          <div className="space-y-2 text-sm">
-            <Label htmlFor="file" className="text-sm font-medium">
-              File
-            </Label>
-            <Input
-              id="file"
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const file = e.target.files?.[0]
-                setFile(file)
-              }}
-            />
-          </div>
         </CardContent>
         <CardFooter>
-          <Button
-            disabled={!!file}
-            size="lg"
-            onClick={async () => {
-              await handleUploadFile(file!)
-            }}
+          {/* <Button
+          disabled={!!file}
+          size="lg"
+          onClick={async () => {
+            await handleUploadFile(file!)
+          }}
           >
-            Upload
-          </Button>
+          Upload
+          </Button> */}
         </CardFooter>
       </Card>
     </>

@@ -15,7 +15,7 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(uuid())
+  id            String       @id @default(uuid())
   name          String
   email         String
   emailVerified Boolean
@@ -24,9 +24,29 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  Collection    Collection[]
+  Image         Image[]
 
   @@unique([email])
   @@map("user")
+}
+
+model Image {
+  id           String      @unique
+  path         String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  userId       String
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  collectionId String?
+  collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+}
+
+model Collection {
+  id     String  @id @default(uuid())
+  userId String
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Image  Image[]
 }
 
 model Session {
