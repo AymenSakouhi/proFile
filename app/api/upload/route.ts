@@ -15,7 +15,7 @@ const s3 = new S3Client({
 
 export async function uploadToS3(file: Buffer, filename: string) {
   try {
-    const response = await s3.send(
+    await s3.send(
       new PutObjectCommand({
         Bucket: 'nextjs-app-profile-8fypnv2el3wb8',
         Key: filename,
@@ -53,14 +53,13 @@ export async function POST(req: NextRequest) {
 
   const response = await uploadToS3(buffer, completeFileName)
   if (response.ok) {
-    const image = await prisma.image.create({
+    await prisma.image.create({
       data: {
         id: filename,
         path: completeFileName,
         userId: user.id,
       },
     })
-    console.log('image result ====> ', image)
   }
 
   return new Response('Success', {

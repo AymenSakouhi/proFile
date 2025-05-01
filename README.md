@@ -59,3 +59,6 @@ To be decided: options include Vercel, Railway, Render, or DigitalOcean.
 ---
 
 Stay tuned as development progresses!
+
+Next Project suggestion for Discord Bot/Leetcoder: https://chatgpt.com/canvas/shared/6813d5538d94819198386197999f96e1
+Next Project suggestion for TODO List: https://app.banani.co/preview/j0TOPuQ0g1ACCLmT5hpE

@@ -1326,15 +1326,15 @@ export namespace Prisma {
   export type UserCountOutputType = {
     sessions: number
     accounts: number
-    Collection: number
-    Image: number
+    collections: number
+    images: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
     accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-    Collection?: boolean | UserCountOutputTypeCountCollectionArgs
-    Image?: boolean | UserCountOutputTypeCountImageArgs
+    collections?: boolean | UserCountOutputTypeCountCollectionsArgs
+    images?: boolean | UserCountOutputTypeCountImagesArgs
   }
 
   // Custom InputTypes
@@ -1365,14 +1365,14 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountCollectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountCollectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CollectionWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ImageWhereInput
   }
 
@@ -1382,11 +1382,11 @@ export namespace Prisma {
    */
 
   export type CollectionCountOutputType = {
-    Image: number
+    images: number
   }
 
   export type CollectionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Image?: boolean | CollectionCountOutputTypeCountImageArgs
+    images?: boolean | CollectionCountOutputTypeCountImagesArgs
   }
 
   // Custom InputTypes
@@ -1403,7 +1403,7 @@ export namespace Prisma {
   /**
    * CollectionCountOutputType without action
    */
-  export type CollectionCountOutputTypeCountImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CollectionCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ImageWhereInput
   }
 
@@ -1594,8 +1594,8 @@ export namespace Prisma {
     updatedAt?: boolean
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    Collection?: boolean | User$CollectionArgs<ExtArgs>
-    Image?: boolean | User$ImageArgs<ExtArgs>
+    collections?: boolean | User$collectionsArgs<ExtArgs>
+    images?: boolean | User$imagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1633,8 +1633,8 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | User$sessionsArgs<ExtArgs>
     accounts?: boolean | User$accountsArgs<ExtArgs>
-    Collection?: boolean | User$CollectionArgs<ExtArgs>
-    Image?: boolean | User$ImageArgs<ExtArgs>
+    collections?: boolean | User$collectionsArgs<ExtArgs>
+    images?: boolean | User$imagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1645,8 +1645,8 @@ export namespace Prisma {
     objects: {
       sessions: Prisma.$SessionPayload<ExtArgs>[]
       accounts: Prisma.$AccountPayload<ExtArgs>[]
-      Collection: Prisma.$CollectionPayload<ExtArgs>[]
-      Image: Prisma.$ImagePayload<ExtArgs>[]
+      collections: Prisma.$CollectionPayload<ExtArgs>[]
+      images: Prisma.$ImagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2052,8 +2052,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     accounts<T extends User$accountsArgs<ExtArgs> = {}>(args?: Subset<T, User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Collection<T extends User$CollectionArgs<ExtArgs> = {}>(args?: Subset<T, User$CollectionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Image<T extends User$ImageArgs<ExtArgs> = {}>(args?: Subset<T, User$ImageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    collections<T extends User$collectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$collectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CollectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    images<T extends User$imagesArgs<ExtArgs> = {}>(args?: Subset<T, User$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2526,9 +2526,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.Collection
+   * User.collections
    */
-  export type User$CollectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$collectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Collection
      */
@@ -2550,9 +2550,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.Image
+   * User.images
    */
-  export type User$ImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Image
      */
@@ -3831,7 +3831,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Image?: boolean | Collection$ImageArgs<ExtArgs>
+    images?: boolean | Collection$imagesArgs<ExtArgs>
     _count?: boolean | CollectionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["collection"]>
 
@@ -3855,7 +3855,7 @@ export namespace Prisma {
   export type CollectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId", ExtArgs["result"]["collection"]>
   export type CollectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    Image?: boolean | Collection$ImageArgs<ExtArgs>
+    images?: boolean | Collection$imagesArgs<ExtArgs>
     _count?: boolean | CollectionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CollectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3869,7 +3869,7 @@ export namespace Prisma {
     name: "Collection"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      Image: Prisma.$ImagePayload<ExtArgs>[]
+      images: Prisma.$ImagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4269,7 +4269,7 @@ export namespace Prisma {
   export interface Prisma__CollectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Image<T extends Collection$ImageArgs<ExtArgs> = {}>(args?: Subset<T, Collection$ImageArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    images<T extends Collection$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Collection$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4697,9 +4697,9 @@ export namespace Prisma {
   }
 
   /**
-   * Collection.Image
+   * Collection.images
    */
-  export type Collection$ImageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Collection$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Image
      */
@@ -8192,8 +8192,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
-    Collection?: CollectionListRelationFilter
-    Image?: ImageListRelationFilter
+    collections?: CollectionListRelationFilter
+    images?: ImageListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8206,8 +8206,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     sessions?: SessionOrderByRelationAggregateInput
     accounts?: AccountOrderByRelationAggregateInput
-    Collection?: CollectionOrderByRelationAggregateInput
-    Image?: ImageOrderByRelationAggregateInput
+    collections?: CollectionOrderByRelationAggregateInput
+    images?: ImageOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8223,8 +8223,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     sessions?: SessionListRelationFilter
     accounts?: AccountListRelationFilter
-    Collection?: CollectionListRelationFilter
-    Image?: ImageListRelationFilter
+    collections?: CollectionListRelationFilter
+    images?: ImageListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -8323,14 +8323,14 @@ export namespace Prisma {
     id?: StringFilter<"Collection"> | string
     userId?: StringFilter<"Collection"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Image?: ImageListRelationFilter
+    images?: ImageListRelationFilter
   }
 
   export type CollectionOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
-    Image?: ImageOrderByRelationAggregateInput
+    images?: ImageOrderByRelationAggregateInput
   }
 
   export type CollectionWhereUniqueInput = Prisma.AtLeast<{
@@ -8340,7 +8340,7 @@ export namespace Prisma {
     NOT?: CollectionWhereInput | CollectionWhereInput[]
     userId?: StringFilter<"Collection"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    Image?: ImageListRelationFilter
+    images?: ImageListRelationFilter
   }, "id">
 
   export type CollectionOrderByWithAggregationInput = {
@@ -8591,8 +8591,8 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    Collection?: CollectionCreateNestedManyWithoutUserInput
-    Image?: ImageCreateNestedManyWithoutUserInput
+    collections?: CollectionCreateNestedManyWithoutUserInput
+    images?: ImageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8605,8 +8605,8 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Collection?: CollectionUncheckedCreateNestedManyWithoutUserInput
-    Image?: ImageUncheckedCreateNestedManyWithoutUserInput
+    collections?: CollectionUncheckedCreateNestedManyWithoutUserInput
+    images?: ImageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8619,8 +8619,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    Collection?: CollectionUpdateManyWithoutUserNestedInput
-    Image?: ImageUpdateManyWithoutUserNestedInput
+    collections?: CollectionUpdateManyWithoutUserNestedInput
+    images?: ImageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8633,8 +8633,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Collection?: CollectionUncheckedUpdateManyWithoutUserNestedInput
-    Image?: ImageUncheckedUpdateManyWithoutUserNestedInput
+    collections?: CollectionUncheckedUpdateManyWithoutUserNestedInput
+    images?: ImageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8672,8 +8672,8 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutImageInput
-    collection?: CollectionCreateNestedOneWithoutImageInput
+    user: UserCreateNestedOneWithoutImagesInput
+    collection?: CollectionCreateNestedOneWithoutImagesInput
   }
 
   export type ImageUncheckedCreateInput = {
@@ -8690,8 +8690,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutImageNestedInput
-    collection?: CollectionUpdateOneWithoutImageNestedInput
+    user?: UserUpdateOneRequiredWithoutImagesNestedInput
+    collection?: CollectionUpdateOneWithoutImagesNestedInput
   }
 
   export type ImageUncheckedUpdateInput = {
@@ -8730,26 +8730,26 @@ export namespace Prisma {
 
   export type CollectionCreateInput = {
     id?: string
-    user: UserCreateNestedOneWithoutCollectionInput
-    Image?: ImageCreateNestedManyWithoutCollectionInput
+    user: UserCreateNestedOneWithoutCollectionsInput
+    images?: ImageCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionUncheckedCreateInput = {
     id?: string
     userId: string
-    Image?: ImageUncheckedCreateNestedManyWithoutCollectionInput
+    images?: ImageUncheckedCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutCollectionNestedInput
-    Image?: ImageUpdateManyWithoutCollectionNestedInput
+    user?: UserUpdateOneRequiredWithoutCollectionsNestedInput
+    images?: ImageUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    Image?: ImageUncheckedUpdateManyWithoutCollectionNestedInput
+    images?: ImageUncheckedUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionCreateManyInput = {
@@ -9564,39 +9564,39 @@ export namespace Prisma {
     deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutImageInput = {
-    create?: XOR<UserCreateWithoutImageInput, UserUncheckedCreateWithoutImageInput>
-    connectOrCreate?: UserCreateOrConnectWithoutImageInput
+  export type UserCreateNestedOneWithoutImagesInput = {
+    create?: XOR<UserCreateWithoutImagesInput, UserUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutImagesInput
     connect?: UserWhereUniqueInput
   }
 
-  export type CollectionCreateNestedOneWithoutImageInput = {
-    create?: XOR<CollectionCreateWithoutImageInput, CollectionUncheckedCreateWithoutImageInput>
-    connectOrCreate?: CollectionCreateOrConnectWithoutImageInput
+  export type CollectionCreateNestedOneWithoutImagesInput = {
+    create?: XOR<CollectionCreateWithoutImagesInput, CollectionUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutImagesInput
     connect?: CollectionWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutImageNestedInput = {
-    create?: XOR<UserCreateWithoutImageInput, UserUncheckedCreateWithoutImageInput>
-    connectOrCreate?: UserCreateOrConnectWithoutImageInput
-    upsert?: UserUpsertWithoutImageInput
+  export type UserUpdateOneRequiredWithoutImagesNestedInput = {
+    create?: XOR<UserCreateWithoutImagesInput, UserUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutImagesInput
+    upsert?: UserUpsertWithoutImagesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutImageInput, UserUpdateWithoutImageInput>, UserUncheckedUpdateWithoutImageInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutImagesInput, UserUpdateWithoutImagesInput>, UserUncheckedUpdateWithoutImagesInput>
   }
 
-  export type CollectionUpdateOneWithoutImageNestedInput = {
-    create?: XOR<CollectionCreateWithoutImageInput, CollectionUncheckedCreateWithoutImageInput>
-    connectOrCreate?: CollectionCreateOrConnectWithoutImageInput
-    upsert?: CollectionUpsertWithoutImageInput
+  export type CollectionUpdateOneWithoutImagesNestedInput = {
+    create?: XOR<CollectionCreateWithoutImagesInput, CollectionUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: CollectionCreateOrConnectWithoutImagesInput
+    upsert?: CollectionUpsertWithoutImagesInput
     disconnect?: CollectionWhereInput | boolean
     delete?: CollectionWhereInput | boolean
     connect?: CollectionWhereUniqueInput
-    update?: XOR<XOR<CollectionUpdateToOneWithWhereWithoutImageInput, CollectionUpdateWithoutImageInput>, CollectionUncheckedUpdateWithoutImageInput>
+    update?: XOR<XOR<CollectionUpdateToOneWithWhereWithoutImagesInput, CollectionUpdateWithoutImagesInput>, CollectionUncheckedUpdateWithoutImagesInput>
   }
 
-  export type UserCreateNestedOneWithoutCollectionInput = {
-    create?: XOR<UserCreateWithoutCollectionInput, UserUncheckedCreateWithoutCollectionInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCollectionInput
+  export type UserCreateNestedOneWithoutCollectionsInput = {
+    create?: XOR<UserCreateWithoutCollectionsInput, UserUncheckedCreateWithoutCollectionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCollectionsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -9614,12 +9614,12 @@ export namespace Prisma {
     connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
   }
 
-  export type UserUpdateOneRequiredWithoutCollectionNestedInput = {
-    create?: XOR<UserCreateWithoutCollectionInput, UserUncheckedCreateWithoutCollectionInput>
-    connectOrCreate?: UserCreateOrConnectWithoutCollectionInput
-    upsert?: UserUpsertWithoutCollectionInput
+  export type UserUpdateOneRequiredWithoutCollectionsNestedInput = {
+    create?: XOR<UserCreateWithoutCollectionsInput, UserUncheckedCreateWithoutCollectionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCollectionsInput
+    upsert?: UserUpsertWithoutCollectionsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCollectionInput, UserUpdateWithoutCollectionInput>, UserUncheckedUpdateWithoutCollectionInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCollectionsInput, UserUpdateWithoutCollectionsInput>, UserUncheckedUpdateWithoutCollectionsInput>
   }
 
   export type ImageUpdateManyWithoutCollectionNestedInput = {
@@ -9901,12 +9901,12 @@ export namespace Prisma {
 
   export type CollectionCreateWithoutUserInput = {
     id?: string
-    Image?: ImageCreateNestedManyWithoutCollectionInput
+    images?: ImageCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionUncheckedCreateWithoutUserInput = {
     id?: string
-    Image?: ImageUncheckedCreateNestedManyWithoutCollectionInput
+    images?: ImageUncheckedCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionCreateOrConnectWithoutUserInput = {
@@ -9924,7 +9924,7 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    collection?: CollectionCreateNestedOneWithoutImageInput
+    collection?: CollectionCreateNestedOneWithoutImagesInput
   }
 
   export type ImageUncheckedCreateWithoutUserInput = {
@@ -10062,7 +10062,7 @@ export namespace Prisma {
     collectionId?: StringNullableFilter<"Image"> | string | null
   }
 
-  export type UserCreateWithoutImageInput = {
+  export type UserCreateWithoutImagesInput = {
     id?: string
     name: string
     email: string
@@ -10072,10 +10072,10 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    Collection?: CollectionCreateNestedManyWithoutUserInput
+    collections?: CollectionCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutImageInput = {
+  export type UserUncheckedCreateWithoutImagesInput = {
     id?: string
     name: string
     email: string
@@ -10085,41 +10085,41 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Collection?: CollectionUncheckedCreateNestedManyWithoutUserInput
+    collections?: CollectionUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutImageInput = {
+  export type UserCreateOrConnectWithoutImagesInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutImageInput, UserUncheckedCreateWithoutImageInput>
+    create: XOR<UserCreateWithoutImagesInput, UserUncheckedCreateWithoutImagesInput>
   }
 
-  export type CollectionCreateWithoutImageInput = {
+  export type CollectionCreateWithoutImagesInput = {
     id?: string
-    user: UserCreateNestedOneWithoutCollectionInput
+    user: UserCreateNestedOneWithoutCollectionsInput
   }
 
-  export type CollectionUncheckedCreateWithoutImageInput = {
+  export type CollectionUncheckedCreateWithoutImagesInput = {
     id?: string
     userId: string
   }
 
-  export type CollectionCreateOrConnectWithoutImageInput = {
+  export type CollectionCreateOrConnectWithoutImagesInput = {
     where: CollectionWhereUniqueInput
-    create: XOR<CollectionCreateWithoutImageInput, CollectionUncheckedCreateWithoutImageInput>
+    create: XOR<CollectionCreateWithoutImagesInput, CollectionUncheckedCreateWithoutImagesInput>
   }
 
-  export type UserUpsertWithoutImageInput = {
-    update: XOR<UserUpdateWithoutImageInput, UserUncheckedUpdateWithoutImageInput>
-    create: XOR<UserCreateWithoutImageInput, UserUncheckedCreateWithoutImageInput>
+  export type UserUpsertWithoutImagesInput = {
+    update: XOR<UserUpdateWithoutImagesInput, UserUncheckedUpdateWithoutImagesInput>
+    create: XOR<UserCreateWithoutImagesInput, UserUncheckedCreateWithoutImagesInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutImageInput = {
+  export type UserUpdateToOneWithWhereWithoutImagesInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutImageInput, UserUncheckedUpdateWithoutImageInput>
+    data: XOR<UserUpdateWithoutImagesInput, UserUncheckedUpdateWithoutImagesInput>
   }
 
-  export type UserUpdateWithoutImageInput = {
+  export type UserUpdateWithoutImagesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -10129,10 +10129,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    Collection?: CollectionUpdateManyWithoutUserNestedInput
+    collections?: CollectionUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutImageInput = {
+  export type UserUncheckedUpdateWithoutImagesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -10142,31 +10142,31 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Collection?: CollectionUncheckedUpdateManyWithoutUserNestedInput
+    collections?: CollectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type CollectionUpsertWithoutImageInput = {
-    update: XOR<CollectionUpdateWithoutImageInput, CollectionUncheckedUpdateWithoutImageInput>
-    create: XOR<CollectionCreateWithoutImageInput, CollectionUncheckedCreateWithoutImageInput>
+  export type CollectionUpsertWithoutImagesInput = {
+    update: XOR<CollectionUpdateWithoutImagesInput, CollectionUncheckedUpdateWithoutImagesInput>
+    create: XOR<CollectionCreateWithoutImagesInput, CollectionUncheckedCreateWithoutImagesInput>
     where?: CollectionWhereInput
   }
 
-  export type CollectionUpdateToOneWithWhereWithoutImageInput = {
+  export type CollectionUpdateToOneWithWhereWithoutImagesInput = {
     where?: CollectionWhereInput
-    data: XOR<CollectionUpdateWithoutImageInput, CollectionUncheckedUpdateWithoutImageInput>
+    data: XOR<CollectionUpdateWithoutImagesInput, CollectionUncheckedUpdateWithoutImagesInput>
   }
 
-  export type CollectionUpdateWithoutImageInput = {
+  export type CollectionUpdateWithoutImagesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutCollectionNestedInput
+    user?: UserUpdateOneRequiredWithoutCollectionsNestedInput
   }
 
-  export type CollectionUncheckedUpdateWithoutImageInput = {
+  export type CollectionUncheckedUpdateWithoutImagesInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type UserCreateWithoutCollectionInput = {
+  export type UserCreateWithoutCollectionsInput = {
     id?: string
     name: string
     email: string
@@ -10176,10 +10176,10 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
     accounts?: AccountCreateNestedManyWithoutUserInput
-    Image?: ImageCreateNestedManyWithoutUserInput
+    images?: ImageCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutCollectionInput = {
+  export type UserUncheckedCreateWithoutCollectionsInput = {
     id?: string
     name: string
     email: string
@@ -10189,12 +10189,12 @@ export namespace Prisma {
     updatedAt: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Image?: ImageUncheckedCreateNestedManyWithoutUserInput
+    images?: ImageUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutCollectionInput = {
+  export type UserCreateOrConnectWithoutCollectionsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutCollectionInput, UserUncheckedCreateWithoutCollectionInput>
+    create: XOR<UserCreateWithoutCollectionsInput, UserUncheckedCreateWithoutCollectionsInput>
   }
 
   export type ImageCreateWithoutCollectionInput = {
@@ -10202,7 +10202,7 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutImageInput
+    user: UserCreateNestedOneWithoutImagesInput
   }
 
   export type ImageUncheckedCreateWithoutCollectionInput = {
@@ -10223,18 +10223,18 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutCollectionInput = {
-    update: XOR<UserUpdateWithoutCollectionInput, UserUncheckedUpdateWithoutCollectionInput>
-    create: XOR<UserCreateWithoutCollectionInput, UserUncheckedCreateWithoutCollectionInput>
+  export type UserUpsertWithoutCollectionsInput = {
+    update: XOR<UserUpdateWithoutCollectionsInput, UserUncheckedUpdateWithoutCollectionsInput>
+    create: XOR<UserCreateWithoutCollectionsInput, UserUncheckedCreateWithoutCollectionsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutCollectionInput = {
+  export type UserUpdateToOneWithWhereWithoutCollectionsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutCollectionInput, UserUncheckedUpdateWithoutCollectionInput>
+    data: XOR<UserUpdateWithoutCollectionsInput, UserUncheckedUpdateWithoutCollectionsInput>
   }
 
-  export type UserUpdateWithoutCollectionInput = {
+  export type UserUpdateWithoutCollectionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -10244,10 +10244,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    Image?: ImageUpdateManyWithoutUserNestedInput
+    images?: ImageUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutCollectionInput = {
+  export type UserUncheckedUpdateWithoutCollectionsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -10257,7 +10257,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Image?: ImageUncheckedUpdateManyWithoutUserNestedInput
+    images?: ImageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ImageUpsertWithWhereUniqueWithoutCollectionInput = {
@@ -10285,8 +10285,8 @@ export namespace Prisma {
     createdAt: Date | string
     updatedAt: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
-    Collection?: CollectionCreateNestedManyWithoutUserInput
-    Image?: ImageCreateNestedManyWithoutUserInput
+    collections?: CollectionCreateNestedManyWithoutUserInput
+    images?: ImageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -10298,8 +10298,8 @@ export namespace Prisma {
     createdAt: Date | string
     updatedAt: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Collection?: CollectionUncheckedCreateNestedManyWithoutUserInput
-    Image?: ImageUncheckedCreateNestedManyWithoutUserInput
+    collections?: CollectionUncheckedCreateNestedManyWithoutUserInput
+    images?: ImageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -10327,8 +10327,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
-    Collection?: CollectionUpdateManyWithoutUserNestedInput
-    Image?: ImageUpdateManyWithoutUserNestedInput
+    collections?: CollectionUpdateManyWithoutUserNestedInput
+    images?: ImageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -10340,8 +10340,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Collection?: CollectionUncheckedUpdateManyWithoutUserNestedInput
-    Image?: ImageUncheckedUpdateManyWithoutUserNestedInput
+    collections?: CollectionUncheckedUpdateManyWithoutUserNestedInput
+    images?: ImageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAccountsInput = {
@@ -10353,8 +10353,8 @@ export namespace Prisma {
     createdAt: Date | string
     updatedAt: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
-    Collection?: CollectionCreateNestedManyWithoutUserInput
-    Image?: ImageCreateNestedManyWithoutUserInput
+    collections?: CollectionCreateNestedManyWithoutUserInput
+    images?: ImageCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -10366,8 +10366,8 @@ export namespace Prisma {
     createdAt: Date | string
     updatedAt: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Collection?: CollectionUncheckedCreateNestedManyWithoutUserInput
-    Image?: ImageUncheckedCreateNestedManyWithoutUserInput
+    collections?: CollectionUncheckedCreateNestedManyWithoutUserInput
+    images?: ImageUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -10395,8 +10395,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
-    Collection?: CollectionUpdateManyWithoutUserNestedInput
-    Image?: ImageUpdateManyWithoutUserNestedInput
+    collections?: CollectionUpdateManyWithoutUserNestedInput
+    images?: ImageUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -10408,8 +10408,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Collection?: CollectionUncheckedUpdateManyWithoutUserNestedInput
-    Image?: ImageUncheckedUpdateManyWithoutUserNestedInput
+    collections?: CollectionUncheckedUpdateManyWithoutUserNestedInput
+    images?: ImageUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type SessionCreateManyUserInput = {
@@ -10526,12 +10526,12 @@ export namespace Prisma {
 
   export type CollectionUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    Image?: ImageUpdateManyWithoutCollectionNestedInput
+    images?: ImageUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    Image?: ImageUncheckedUpdateManyWithoutCollectionNestedInput
+    images?: ImageUncheckedUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionUncheckedUpdateManyWithoutUserInput = {
@@ -10543,7 +10543,7 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    collection?: CollectionUpdateOneWithoutImageNestedInput
+    collection?: CollectionUpdateOneWithoutImagesNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutUserInput = {
@@ -10575,7 +10575,7 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutImageNestedInput
+    user?: UserUpdateOneRequiredWithoutImagesNestedInput
   }
 
   export type ImageUncheckedUpdateWithoutCollectionInput = {

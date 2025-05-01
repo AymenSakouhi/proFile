@@ -24,8 +24,8 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
-  Collection    Collection[]
-  Image         Image[]
+  collections   Collection[]
+  images        Image[]
 
   @@unique([email])
   @@map("user")
@@ -46,7 +46,7 @@ model Collection {
   id     String  @id @default(uuid())
   userId String
   user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Image  Image[]
+  images Image[]
 }
 
 model Session {

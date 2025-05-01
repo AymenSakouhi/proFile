@@ -34,8 +34,8 @@ const data = {
       title: 'Getting Started',
       items: [
         {
-          title: 'Documentation',
-          url: '/documentation',
+          title: 'Library',
+          url: '/dashboard/library',
         },
         {
           title: 'Upload your file',
