@@ -95,8 +95,6 @@ function Previews() {
   )
 }
 
-;<Previews />
-
 function FileIcon(props: Record<string, unknown>) {
   return (
     <svg
@@ -120,7 +118,7 @@ function FileIcon(props: Record<string, unknown>) {
 const FileUpload = () => {
   return (
     <>
-      <Card className="m-6">
+      <Card>
         <CardContent className="p-6 space-y-4">
           <Previews />
         </CardContent>

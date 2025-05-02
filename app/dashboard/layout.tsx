@@ -9,7 +9,7 @@ const Dashboard = ({ children }: { children: React.ReactNode }) => {
       <AppSidebar />
       <SidebarInset>
         <NavBar />
-        {children}
+        <div className="p-6">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   )
