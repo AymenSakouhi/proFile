@@ -10,10 +10,12 @@ import { useEffect, useState } from 'react'
 const ImageHostname = `https://${process.env.NEXT_PUBLIC_AWS_DISTRIBUTION_URL}`
 
 const Library = () => {
-  const [images, setImages] = useState<ImageType[]>([])
+  const [images, setImages] = useState<ImageType[] | undefined>([])
   const [isLoading, setLoading] = useState(true)
   const [isCopied, setIsCopied] = useState(false)
-  const [filteredImages, setFilteredImages] = useState<ImageType[]>(images)
+  const [filteredImages, setFilteredImages] = useState<ImageType[] | undefined>(
+    images,
+  )
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -25,7 +27,7 @@ const Library = () => {
     fetchImages()
   }, [])
 
-  const handleCopy = (img) => {
+  const handleCopy = (img: ImageType) => {
     navigator.clipboard.writeText(`${ImageHostname}/${img.path}`)
     setIsCopied(true)
     setTimeout(() => {
@@ -33,9 +35,9 @@ const Library = () => {
     }, 1000)
   }
 
-  const handleSearch = (e) => {
-    if (!images.length) return
-    const temp = images.filter((img) => img.id.includes(e.target.value))
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!images?.length) return
+    const temp = images?.filter((img) => img.id.includes(e.target.value))
     setFilteredImages(temp)
   }
 
@@ -57,8 +59,8 @@ const Library = () => {
         onChange={handleSearch}
       />
       <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-4">
-        {filteredImages.length > 0 &&
-          filteredImages.map((img) => (
+        {filteredImages?.length > 0 &&
+          filteredImages?.map((img) => (
             <div
               className="flex flex-col items-center justify-center h-fit"
               key={img.path}
