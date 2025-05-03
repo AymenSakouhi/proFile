@@ -6,33 +6,38 @@ import { toast } from 'sonner'
 import Image from 'next/image'
 
 import { useDropzone } from 'react-dropzone'
+import { FileIcon } from 'lucide-react'
 
 function Previews() {
   const [files, setFiles] = useState<(File & { preview: string })[]>([])
 
-  const handleUploadFile = async (file: File) => {
-    if (!file) return
-    const formData = new FormData()
-    formData.append('file', file)
-    try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      })
-      if (!response.ok) {
-        throw new Error('Upload failed')
+  const handleUploadFile = async (files: File[]) => {
+    if (!files.length) return
+    files.forEach(async (file) => {
+      const formData = new FormData()
+      formData.append('file', file)
+      try {
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        })
+        if (!response.ok) {
+          throw new Error('Upload failed')
+        }
+        toast.success('File uploaded successfully')
+      } catch (e) {
+        toast.error('Failed to upload the file')
+        console.error(e)
       }
-      toast.success('File uploaded successfully')
-    } catch (e) {
-      toast.error('Failed to upload the file')
-      console.error(e)
-    }
+    })
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
       'image/*': [],
     },
+    maxFiles: 10,
+    maxSize: 2000000,
     onDrop: (acceptedFiles: File[]) => {
       setFiles(
         acceptedFiles.map((file) =>
@@ -41,6 +46,7 @@ function Previews() {
           }),
         ),
       )
+      handleUploadFile(acceptedFiles)
     },
   })
 
@@ -58,9 +64,6 @@ function Previews() {
           // Revoke data uri after image is loaded
           onLoad={() => {
             URL.revokeObjectURL(file.preview)
-            if (file) {
-              handleUploadFile(file)
-            }
           }}
         />
       </div>
@@ -95,44 +98,17 @@ function Previews() {
   )
 }
 
-function FileIcon(props: Record<string, unknown>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
-      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-    </svg>
-  )
-}
-
 const FileUpload = () => {
   return (
     <>
       <Card>
         <CardContent className="p-6 space-y-4">
+          <h1 className="text-center text-2xl">
+            Please specify your image upload criteria
+          </h1>
           <Previews />
         </CardContent>
-        <CardFooter>
-          {/* <Button
-          disabled={!!file}
-          size="lg"
-          onClick={async () => {
-            await handleUploadFile(file!)
-          }}
-          >
-          Upload
-          </Button> */}
-        </CardFooter>
+        <CardFooter></CardFooter>
       </Card>
     </>
   )

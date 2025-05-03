@@ -37,7 +37,9 @@ const Library = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!images?.length) return
-    const temp = images?.filter((img) => img.id.includes(e.target.value))
+    const temp = images?.filter((img) =>
+      img.id.toLowerCase().includes(e.target.value),
+    )
     setFilteredImages(temp)
   }
 
@@ -59,7 +61,7 @@ const Library = () => {
         onChange={handleSearch}
       />
       <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-4">
-        {filteredImages?.length > 0 &&
+        {filteredImages!.length > 0 &&
           filteredImages?.map((img) => (
             <div
               className="flex flex-col items-center justify-center h-fit"
@@ -71,7 +73,7 @@ const Library = () => {
                   alt={img?.id}
                   width={100}
                   height={100}
-                  className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 opacity-100 transition-opacity duration-300 group-hover:opacity-10"
+                  className="w-full h-full object-cover duration-300 ease-in-out group-hover:scale-105 opacity-100 transition-opacity group-hover:opacity-10"
                 />
                 <div className="absolute text-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-[50%] text-3xl text-white transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100">
                   <Copy
