@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppSidebar } from '@/components/app-sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
-import NavBar from '@/components/Navar'
+import NavBar from '@/components/navar'
 
 const Dashboard = ({ children }: { children: React.ReactNode }) => {
   return (

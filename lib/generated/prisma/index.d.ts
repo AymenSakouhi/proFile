@@ -3702,16 +3702,19 @@ export namespace Prisma {
 
   export type CollectionMinAggregateOutputType = {
     id: string | null
+    name: string | null
     userId: string | null
   }
 
   export type CollectionMaxAggregateOutputType = {
     id: string | null
+    name: string | null
     userId: string | null
   }
 
   export type CollectionCountAggregateOutputType = {
     id: number
+    name: number
     userId: number
     _all: number
   }
@@ -3719,16 +3722,19 @@ export namespace Prisma {
 
   export type CollectionMinAggregateInputType = {
     id?: true
+    name?: true
     userId?: true
   }
 
   export type CollectionMaxAggregateInputType = {
     id?: true
+    name?: true
     userId?: true
   }
 
   export type CollectionCountAggregateInputType = {
     id?: true
+    name?: true
     userId?: true
     _all?: true
   }
@@ -3807,6 +3813,7 @@ export namespace Prisma {
 
   export type CollectionGroupByOutputType = {
     id: string
+    name: string
     userId: string
     _count: CollectionCountAggregateOutputType | null
     _min: CollectionMinAggregateOutputType | null
@@ -3829,6 +3836,7 @@ export namespace Prisma {
 
   export type CollectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     images?: boolean | Collection$imagesArgs<ExtArgs>
@@ -3837,22 +3845,25 @@ export namespace Prisma {
 
   export type CollectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["collection"]>
 
   export type CollectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["collection"]>
 
   export type CollectionSelectScalar = {
     id?: boolean
+    name?: boolean
     userId?: boolean
   }
 
-  export type CollectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId", ExtArgs["result"]["collection"]>
+  export type CollectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "userId", ExtArgs["result"]["collection"]>
   export type CollectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     images?: boolean | Collection$imagesArgs<ExtArgs>
@@ -3873,6 +3884,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      name: string
       userId: string
     }, ExtArgs["result"]["collection"]>
     composites: {}
@@ -4300,6 +4312,7 @@ export namespace Prisma {
    */
   interface CollectionFieldRefs {
     readonly id: FieldRef<"Collection", 'String'>
+    readonly name: FieldRef<"Collection", 'String'>
     readonly userId: FieldRef<"Collection", 'String'>
   }
     
@@ -8047,6 +8060,7 @@ export namespace Prisma {
 
   export const CollectionScalarFieldEnum: {
     id: 'id',
+    name: 'name',
     userId: 'userId'
   };
 
@@ -8321,6 +8335,7 @@ export namespace Prisma {
     OR?: CollectionWhereInput[]
     NOT?: CollectionWhereInput | CollectionWhereInput[]
     id?: StringFilter<"Collection"> | string
+    name?: StringFilter<"Collection"> | string
     userId?: StringFilter<"Collection"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     images?: ImageListRelationFilter
@@ -8328,6 +8343,7 @@ export namespace Prisma {
 
   export type CollectionOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
     user?: UserOrderByWithRelationInput
     images?: ImageOrderByRelationAggregateInput
@@ -8338,6 +8354,7 @@ export namespace Prisma {
     AND?: CollectionWhereInput | CollectionWhereInput[]
     OR?: CollectionWhereInput[]
     NOT?: CollectionWhereInput | CollectionWhereInput[]
+    name?: StringFilter<"Collection"> | string
     userId?: StringFilter<"Collection"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     images?: ImageListRelationFilter
@@ -8345,6 +8362,7 @@ export namespace Prisma {
 
   export type CollectionOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
     _count?: CollectionCountOrderByAggregateInput
     _max?: CollectionMaxOrderByAggregateInput
@@ -8356,6 +8374,7 @@ export namespace Prisma {
     OR?: CollectionScalarWhereWithAggregatesInput[]
     NOT?: CollectionScalarWhereWithAggregatesInput | CollectionScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Collection"> | string
+    name?: StringWithAggregatesFilter<"Collection"> | string
     userId?: StringWithAggregatesFilter<"Collection"> | string
   }
 
@@ -8730,39 +8749,46 @@ export namespace Prisma {
 
   export type CollectionCreateInput = {
     id?: string
+    name: string
     user: UserCreateNestedOneWithoutCollectionsInput
     images?: ImageCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionUncheckedCreateInput = {
     id?: string
+    name: string
     userId: string
     images?: ImageUncheckedCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutCollectionsNestedInput
     images?: ImageUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     images?: ImageUncheckedUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionCreateManyInput = {
     id?: string
+    name: string
     userId: string
   }
 
   export type CollectionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type CollectionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -9234,16 +9260,19 @@ export namespace Prisma {
 
   export type CollectionCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
   }
 
   export type CollectionMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
   }
 
   export type CollectionMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     userId?: SortOrder
   }
 
@@ -9901,11 +9930,13 @@ export namespace Prisma {
 
   export type CollectionCreateWithoutUserInput = {
     id?: string
+    name: string
     images?: ImageCreateNestedManyWithoutCollectionInput
   }
 
   export type CollectionUncheckedCreateWithoutUserInput = {
     id?: string
+    name: string
     images?: ImageUncheckedCreateNestedManyWithoutCollectionInput
   }
 
@@ -10031,6 +10062,7 @@ export namespace Prisma {
     OR?: CollectionScalarWhereInput[]
     NOT?: CollectionScalarWhereInput | CollectionScalarWhereInput[]
     id?: StringFilter<"Collection"> | string
+    name?: StringFilter<"Collection"> | string
     userId?: StringFilter<"Collection"> | string
   }
 
@@ -10095,11 +10127,13 @@ export namespace Prisma {
 
   export type CollectionCreateWithoutImagesInput = {
     id?: string
+    name: string
     user: UserCreateNestedOneWithoutCollectionsInput
   }
 
   export type CollectionUncheckedCreateWithoutImagesInput = {
     id?: string
+    name: string
     userId: string
   }
 
@@ -10158,11 +10192,13 @@ export namespace Prisma {
 
   export type CollectionUpdateWithoutImagesInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutCollectionsNestedInput
   }
 
   export type CollectionUncheckedUpdateWithoutImagesInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -10439,6 +10475,7 @@ export namespace Prisma {
 
   export type CollectionCreateManyUserInput = {
     id?: string
+    name: string
   }
 
   export type ImageCreateManyUserInput = {
@@ -10526,16 +10563,19 @@ export namespace Prisma {
 
   export type CollectionUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     images?: ImageUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     images?: ImageUncheckedUpdateManyWithoutCollectionNestedInput
   }
 
   export type CollectionUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type ImageUpdateWithoutUserInput = {

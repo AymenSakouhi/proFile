@@ -1,6 +1,6 @@
 'use client'
 
-import { getImagesAction } from '@/app/actions/dashboard-actions'
+import { getImagesAction } from '@/actions/dashboard-actions'
 import { Input } from '@/components/ui/input'
 import { Image as ImageType } from '@/lib/generated/prisma'
 import { Copy } from 'lucide-react'

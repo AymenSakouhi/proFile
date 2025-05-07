@@ -1,7 +1,6 @@
 'use client'
 import * as React from 'react'
 
-import { SearchForm } from '@/components/search-form'
 import { NavUser } from './nav-user'
 import {
   Sidebar,
@@ -41,6 +40,10 @@ const data = {
           title: 'Upload your file',
           url: '/dashboard/fileupload',
           isActive: true,
+        },
+        {
+          title: 'Collections',
+          url: '/dashboard/collections',
         },
       ],
     },
