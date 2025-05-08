@@ -1,9 +1,10 @@
 'use client'
+
 import { FilePlus2 } from 'lucide-react'
 import { useState } from 'react'
-import Dialog from '@/components/dialog'
+import AddCollectionDialog from '@/components/add-collection-dialog'
 
-const AddCollection = () => {
+export default function AddCollection() {
   const [open, setOpen] = useState(false)
 
   return (
@@ -24,9 +25,7 @@ const AddCollection = () => {
           Add Collection
         </div>
       </div>
-      <Dialog open={open} onOpenChange={setOpen} />
+      <AddCollectionDialog open={open} onOpenChange={setOpen} />
     </>
   )
 }
-
-export default AddCollection
