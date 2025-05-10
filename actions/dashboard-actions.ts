@@ -23,9 +23,7 @@ export const getImagesAction = async () => {
       },
     })
 
-    if (user?.images) {
-      return user.images || []
-    }
+    return user?.images ? user.images : []
   } catch (e) {
     console.error('Please Log in first', e)
   }

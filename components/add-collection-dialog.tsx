@@ -15,6 +15,7 @@ import { Label } from './ui/label'
 import { Input } from './ui/input'
 
 import { addCollectionAction } from '@/actions/collection-actions'
+
 import { useRouter } from 'next/navigation'
 
 type DialogProps = {
@@ -22,12 +23,16 @@ type DialogProps = {
   onOpenChange: (open: boolean) => void
 }
 
+type errorMessage = { message: string }
+
 export default function AddCollectionDialog({
   open,
   onOpenChange,
 }: DialogProps) {
   const router = useRouter()
+
   const [collectionName, setCollectionName] = useState<string>('')
+  const [errors, setErrors] = useState<errorMessage[] | undefined>()
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -53,12 +58,24 @@ export default function AddCollectionDialog({
                 setCollectionName(e.target.value)
               }}
             />
+            {errors?.map((error: errorMessage) => (
+              <p key={error.message} className="text-red-500 text-sm">
+                {error.message}
+              </p>
+            ))}
             <DialogFooter>
               <Button
                 type="submit"
                 onClick={async () => {
-                  const result = await addCollectionAction(collectionName)
-                  if (result) {
+                  const result = await addCollectionAction(
+                    collectionName.trim(),
+                  )
+
+                  if (result?.error) {
+                    setErrors(result?.error?.name)
+                  }
+
+                  if (result?.collection) {
                     onOpenChange(!open)
                     router.refresh()
                   }

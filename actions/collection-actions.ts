@@ -4,13 +4,8 @@ import prisma from '@/lib/prisma'
 import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { z } from 'zod'
-
-const collectionSchema = z.object({
-  name: z.string().min(3, {
-    message: 'This should be a valid email',
-  }),
-})
+import { collectionSchema } from '@/utils/schemas'
+import { error } from 'console'
 
 export const addCollectionAction = async (name: string) => {
   try {
@@ -21,12 +16,45 @@ export const addCollectionAction = async (name: string) => {
       redirect('/login')
     }
 
-    const parsedName = collectionSchema.parse({ name })
+    const { data, error } = collectionSchema.safeParse({ name })
+
+    if (error) {
+      return {
+        error: error.flatten((issue) => ({
+          message: issue.message,
+        })).fieldErrors,
+        collection: null,
+      }
+    }
 
     const collection = await prisma.collection.create({
       data: {
-        name: parsedName.name,
+        name: data?.name,
         userId: session.user.id,
+      },
+    })
+
+    return {
+      error,
+      collection,
+    }
+  } catch (e) {
+    console.error('Error:', e)
+  }
+}
+
+export const deleteCollectionAction = async (id: string) => {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    })
+    if (!session?.session || !session?.user) {
+      redirect('/login')
+    }
+
+    const collection = await prisma.collection.delete({
+      where: {
+        id,
       },
     })
 
@@ -45,7 +73,11 @@ export const getCollections = async () => {
       redirect('/login')
     }
 
-    const collections = await prisma.collection.findMany()
+    const collections = await prisma.collection.findMany({
+      include: {
+        images: true,
+      },
+    })
 
     return collections
   } catch (e) {
