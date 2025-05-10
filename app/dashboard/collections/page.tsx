@@ -28,6 +28,9 @@ const Collections = async () => {
             <div className="text-sm font-semibold text-black py-2 group-hover:scale-110 duration-300 ease-in-out">
               {collection.name}
             </div>
+            <div className="text-sm font-semibold text-black py-2 group-hover:scale-110 duration-300 ease-in-out">
+              Images in collection: {collection.images.length}
+            </div>
           </div>
         ))}
       </div>

@@ -2604,6 +2604,7 @@ export namespace Prisma {
 
   export type ImageMinAggregateOutputType = {
     id: string | null
+    name: string | null
     path: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2613,6 +2614,7 @@ export namespace Prisma {
 
   export type ImageMaxAggregateOutputType = {
     id: string | null
+    name: string | null
     path: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2622,6 +2624,7 @@ export namespace Prisma {
 
   export type ImageCountAggregateOutputType = {
     id: number
+    name: number
     path: number
     createdAt: number
     updatedAt: number
@@ -2633,6 +2636,7 @@ export namespace Prisma {
 
   export type ImageMinAggregateInputType = {
     id?: true
+    name?: true
     path?: true
     createdAt?: true
     updatedAt?: true
@@ -2642,6 +2646,7 @@ export namespace Prisma {
 
   export type ImageMaxAggregateInputType = {
     id?: true
+    name?: true
     path?: true
     createdAt?: true
     updatedAt?: true
@@ -2651,6 +2656,7 @@ export namespace Prisma {
 
   export type ImageCountAggregateInputType = {
     id?: true
+    name?: true
     path?: true
     createdAt?: true
     updatedAt?: true
@@ -2733,6 +2739,7 @@ export namespace Prisma {
 
   export type ImageGroupByOutputType = {
     id: string
+    name: string | null
     path: string
     createdAt: Date
     updatedAt: Date
@@ -2759,6 +2766,7 @@ export namespace Prisma {
 
   export type ImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     path?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2770,6 +2778,7 @@ export namespace Prisma {
 
   export type ImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     path?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2781,6 +2790,7 @@ export namespace Prisma {
 
   export type ImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    name?: boolean
     path?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2792,6 +2802,7 @@ export namespace Prisma {
 
   export type ImageSelectScalar = {
     id?: boolean
+    name?: boolean
     path?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2799,7 +2810,7 @@ export namespace Prisma {
     collectionId?: boolean
   }
 
-  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "path" | "createdAt" | "updatedAt" | "userId" | "collectionId", ExtArgs["result"]["image"]>
+  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "path" | "createdAt" | "updatedAt" | "userId" | "collectionId", ExtArgs["result"]["image"]>
   export type ImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     collection?: boolean | Image$collectionArgs<ExtArgs>
@@ -2821,6 +2832,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      name: string | null
       path: string
       createdAt: Date
       updatedAt: Date
@@ -3252,6 +3264,7 @@ export namespace Prisma {
    */
   interface ImageFieldRefs {
     readonly id: FieldRef<"Image", 'String'>
+    readonly name: FieldRef<"Image", 'String'>
     readonly path: FieldRef<"Image", 'String'>
     readonly createdAt: FieldRef<"Image", 'DateTime'>
     readonly updatedAt: FieldRef<"Image", 'DateTime'>
@@ -8048,6 +8061,7 @@ export namespace Prisma {
 
   export const ImageScalarFieldEnum: {
     id: 'id',
+    name: 'name',
     path: 'path',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -8272,6 +8286,7 @@ export namespace Prisma {
     OR?: ImageWhereInput[]
     NOT?: ImageWhereInput | ImageWhereInput[]
     id?: StringFilter<"Image"> | string
+    name?: StringNullableFilter<"Image"> | string | null
     path?: StringFilter<"Image"> | string
     createdAt?: DateTimeFilter<"Image"> | Date | string
     updatedAt?: DateTimeFilter<"Image"> | Date | string
@@ -8283,6 +8298,7 @@ export namespace Prisma {
 
   export type ImageOrderByWithRelationInput = {
     id?: SortOrder
+    name?: SortOrderInput | SortOrder
     path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8297,6 +8313,7 @@ export namespace Prisma {
     AND?: ImageWhereInput | ImageWhereInput[]
     OR?: ImageWhereInput[]
     NOT?: ImageWhereInput | ImageWhereInput[]
+    name?: StringNullableFilter<"Image"> | string | null
     path?: StringFilter<"Image"> | string
     createdAt?: DateTimeFilter<"Image"> | Date | string
     updatedAt?: DateTimeFilter<"Image"> | Date | string
@@ -8308,6 +8325,7 @@ export namespace Prisma {
 
   export type ImageOrderByWithAggregationInput = {
     id?: SortOrder
+    name?: SortOrderInput | SortOrder
     path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8323,6 +8341,7 @@ export namespace Prisma {
     OR?: ImageScalarWhereWithAggregatesInput[]
     NOT?: ImageScalarWhereWithAggregatesInput | ImageScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Image"> | string
+    name?: StringNullableWithAggregatesFilter<"Image"> | string | null
     path?: StringWithAggregatesFilter<"Image"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Image"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Image"> | Date | string
@@ -8687,7 +8706,8 @@ export namespace Prisma {
   }
 
   export type ImageCreateInput = {
-    id: string
+    id?: string
+    name?: string | null
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8696,7 +8716,8 @@ export namespace Prisma {
   }
 
   export type ImageUncheckedCreateInput = {
-    id: string
+    id?: string
+    name?: string | null
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8706,6 +8727,7 @@ export namespace Prisma {
 
   export type ImageUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8715,6 +8737,7 @@ export namespace Prisma {
 
   export type ImageUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8723,7 +8746,8 @@ export namespace Prisma {
   }
 
   export type ImageCreateManyInput = {
-    id: string
+    id?: string
+    name?: string | null
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -8733,6 +8757,7 @@ export namespace Prisma {
 
   export type ImageUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -8740,6 +8765,7 @@ export namespace Prisma {
 
   export type ImageUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9233,6 +9259,7 @@ export namespace Prisma {
 
   export type ImageCountOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9242,6 +9269,7 @@ export namespace Prisma {
 
   export type ImageMaxOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9251,6 +9279,7 @@ export namespace Prisma {
 
   export type ImageMinOrderByAggregateInput = {
     id?: SortOrder
+    name?: SortOrder
     path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9951,7 +9980,8 @@ export namespace Prisma {
   }
 
   export type ImageCreateWithoutUserInput = {
-    id: string
+    id?: string
+    name?: string | null
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9959,7 +9989,8 @@ export namespace Prisma {
   }
 
   export type ImageUncheckedCreateWithoutUserInput = {
-    id: string
+    id?: string
+    name?: string | null
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10087,6 +10118,7 @@ export namespace Prisma {
     OR?: ImageScalarWhereInput[]
     NOT?: ImageScalarWhereInput | ImageScalarWhereInput[]
     id?: StringFilter<"Image"> | string
+    name?: StringNullableFilter<"Image"> | string | null
     path?: StringFilter<"Image"> | string
     createdAt?: DateTimeFilter<"Image"> | Date | string
     updatedAt?: DateTimeFilter<"Image"> | Date | string
@@ -10234,7 +10266,8 @@ export namespace Prisma {
   }
 
   export type ImageCreateWithoutCollectionInput = {
-    id: string
+    id?: string
+    name?: string | null
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10242,7 +10275,8 @@ export namespace Prisma {
   }
 
   export type ImageUncheckedCreateWithoutCollectionInput = {
-    id: string
+    id?: string
+    name?: string | null
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10479,7 +10513,8 @@ export namespace Prisma {
   }
 
   export type ImageCreateManyUserInput = {
-    id: string
+    id?: string
+    name?: string | null
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10580,6 +10615,7 @@ export namespace Prisma {
 
   export type ImageUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10588,6 +10624,7 @@ export namespace Prisma {
 
   export type ImageUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10596,6 +10633,7 @@ export namespace Prisma {
 
   export type ImageUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10603,7 +10641,8 @@ export namespace Prisma {
   }
 
   export type ImageCreateManyCollectionInput = {
-    id: string
+    id?: string
+    name?: string | null
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10612,6 +10651,7 @@ export namespace Prisma {
 
   export type ImageUpdateWithoutCollectionInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10620,6 +10660,7 @@ export namespace Prisma {
 
   export type ImageUncheckedUpdateWithoutCollectionInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10628,6 +10669,7 @@ export namespace Prisma {
 
   export type ImageUncheckedUpdateManyWithoutCollectionInput = {
     id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

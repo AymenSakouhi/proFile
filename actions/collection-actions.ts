@@ -5,7 +5,6 @@ import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { collectionSchema } from '@/utils/schemas'
-import { error } from 'console'
 
 export const addCollectionAction = async (name: string) => {
   try {

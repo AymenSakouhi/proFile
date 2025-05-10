@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
   if (response.ok) {
     await prisma.image.create({
       data: {
-        id: filename,
+        name: filename,
         path: completeFileName,
         userId: user.id,
       },

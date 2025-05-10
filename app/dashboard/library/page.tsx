@@ -37,8 +37,11 @@ const Library = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!images?.length) return
-    const temp = images?.filter((img) =>
-      img.id.toLowerCase().includes(e.target.value),
+    const temp = images?.filter(
+      (img) =>
+        //TODO by id I mean name
+        img.id.toLowerCase().includes(e.target.value) ||
+        img.collectionId?.toLowerCase().includes(e.target.value),
     )
     setFilteredImages(temp)
   }
@@ -56,7 +59,7 @@ const Library = () => {
         someone
       </p>
       <Input
-        placeholder="Search your image"
+        placeholder="Search your image by name or collection"
         className="my-8 w-1/2 self-center border-slate-500 border-2"
         onChange={handleSearch}
       />
