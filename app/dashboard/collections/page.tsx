@@ -15,7 +15,6 @@ const Collections = async () => {
           const url = collection.images[0]
             ? ImageHostname + collection?.images[0]?.path
             : '/preview_collection.png'
-          console.log(url)
           return (
             <div
               key={collection.id}
@@ -27,9 +26,8 @@ const Collections = async () => {
                   width={100}
                   height={100}
                   className="w-full object-cover group-hover:scale-102 duration-300 ease-in-out rounded-md cursor-pointer"
-                  src={'/preview_collection.png'}
                   src={url}
-                  alt=""
+                  alt={collection.name}
                 />
               </div>
               <div className="text-sm font-semibold text-black py-2 group-hover:scale-110 duration-300 ease-in-out">
