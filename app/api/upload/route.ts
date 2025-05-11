@@ -38,6 +38,7 @@ export async function POST(req: NextRequest) {
   })
 
   const file = formData.get('file') as File
+  const collectionId = formData.get('collectionId') as string
 
   if (!file) {
     return new Response('Error', {
@@ -58,6 +59,8 @@ export async function POST(req: NextRequest) {
         name: filename,
         path: completeFileName,
         userId: user.id,
+        //TODO to go back to
+        ...(collectionId && { collectionId }),
       },
     })
   }

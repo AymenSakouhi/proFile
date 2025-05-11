@@ -7,7 +7,7 @@ import { Copy } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-const ImageHostname = `https://${process.env.NEXT_PUBLIC_AWS_DISTRIBUTION_URL}`
+export const ImageHostname = `https://${process.env.NEXT_PUBLIC_AWS_DISTRIBUTION_URL}/`
 
 const Library = () => {
   const [images, setImages] = useState<ImageType[] | undefined>([])
@@ -28,7 +28,7 @@ const Library = () => {
   }, [])
 
   const handleCopy = (img: ImageType) => {
-    navigator.clipboard.writeText(`${ImageHostname}/${img.path}`)
+    navigator.clipboard.writeText(`${ImageHostname}${img.path}`)
     setIsCopied(true)
     setTimeout(() => {
       setIsCopied(false)
@@ -72,7 +72,7 @@ const Library = () => {
             >
               <div className="group w-full h-44 relative cursor-pointer border-4 border-black rounded-md overflow-hidden bg-black/80">
                 <Image
-                  src={`${ImageHostname}/${img?.path}`}
+                  src={`${ImageHostname}${img?.path}`}
                   alt={img?.id}
                   width={100}
                   height={100}
