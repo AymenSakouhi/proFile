@@ -7,7 +7,6 @@ import Image from 'next/image'
 import { useDropzone } from 'react-dropzone'
 import { FileIcon } from 'lucide-react'
 import { SelectBox } from '@/components/select-box'
-import { SelectItem, SelectLabel } from '@/components/ui/select'
 import type { Collection } from '@/lib/generated/prisma'
 
 type UploadSectionProps = {
@@ -25,7 +24,8 @@ export function UploadSection({ collections }: UploadSectionProps) {
     files.forEach(async (file) => {
       const formData = new FormData()
       formData.append('file', file)
-      formData.append('collectionId', selectedCollection)
+      if (selectedCollection)
+        formData.append('collectionId', selectedCollection)
       try {
         const response = await fetch('/api/upload', {
           method: 'POST',
@@ -97,7 +97,6 @@ export function UploadSection({ collections }: UploadSectionProps) {
           name="collections"
           items={collections}
           handleValueChange={(value) => {
-            // console.log(value, 'value')
             setSelectedCollection(value)
           }}
         />
