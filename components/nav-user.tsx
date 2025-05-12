@@ -26,18 +26,10 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar'
 import { AvatarImage } from '@radix-ui/react-avatar'
+import { User } from '@/lib/auth-client'
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}) {
+export function NavUser({ user }: { user: User }) {
   const { isMobile } = useSidebar()
-
   return (
     <SidebarMenu>
       <SidebarMenuItem>

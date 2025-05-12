@@ -2,7 +2,7 @@ import Image from 'next/image'
 import AddCollection from '@/components/add-collection'
 import { getCollections } from '@/actions/collection-actions'
 import RemoveCollection from '@/components/remove-collection'
-import { ImageHostname } from '@/utils/utils'
+import { IMAGEHOSTNAME } from '@/utils/constants'
 
 const Collections = async () => {
   const collections = (await getCollections()) || []
@@ -13,7 +13,7 @@ const Collections = async () => {
         <AddCollection />
         {collections?.map((collection) => {
           const url = collection.images[0]
-            ? ImageHostname + collection?.images[0]?.path
+            ? IMAGEHOSTNAME + collection?.images[0]?.path
             : '/preview_collection.png'
           return (
             <div

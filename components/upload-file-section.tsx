@@ -7,10 +7,10 @@ import Image from 'next/image'
 import { useDropzone } from 'react-dropzone'
 import { FileIcon } from 'lucide-react'
 import { SelectBox } from '@/components/select-box'
-import type { Collection } from '@/lib/generated/prisma'
+import type { CollectionsWithImagesType } from '@/app/dashboard/fileupload/page'
 
 type UploadSectionProps = {
-  collections: Collection[]
+  collections: CollectionsWithImagesType[] | undefined
 }
 
 export function UploadSection({ collections }: UploadSectionProps) {

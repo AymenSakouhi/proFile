@@ -10,9 +10,11 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
+import { CollectionsWithImagesType } from '@/app/dashboard/fileupload/page'
+
 type SelectBoxProps = {
   name: string
-  items: any
+  items: CollectionsWithImagesType[] | undefined
   handleValueChange: (value: string) => void
 }
 
