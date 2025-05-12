@@ -53,6 +53,8 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: userData } = useSession()
 
+  if (!userData) return <p>No session data</p>
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>
