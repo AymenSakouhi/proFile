@@ -19,6 +19,12 @@ type SelectBoxProps = {
 }
 
 export function SelectBox({ name, items, handleValueChange }: SelectBoxProps) {
+  if (!items)
+    return (
+      <p className="text-sm text-red-500">
+        There is no items to render the selectbox
+      </p>
+    )
   return (
     <Select onValueChange={handleValueChange}>
       <SelectTrigger className="w-full">

@@ -20,7 +20,6 @@ export const getImagesAction = async () => {
       },
       include: {
         images: true,
-        collections: true,
       },
     })
 
