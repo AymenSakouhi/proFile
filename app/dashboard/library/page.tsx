@@ -48,7 +48,9 @@ const Library = () => {
 
   if (isLoading)
     return (
-      <div className="h-screen flex flex-col items-center justify-center"></div>
+      <div className="h-screen flex flex-col items-center justify-center">
+        Is Loading....!
+      </div>
     )
 
   return (

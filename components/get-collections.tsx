@@ -5,7 +5,6 @@ import { IMAGEHOSTNAME } from '@/utils/constants'
 
 const GetCollections = async () => {
   const collections = (await getCollections()) || []
-  const promise = await new Promise((resolve) => setTimeout(resolve, 2000))
 
   return (
     <>
