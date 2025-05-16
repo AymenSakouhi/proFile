@@ -19,6 +19,7 @@ const Library = () => {
   useEffect(() => {
     const fetchImages = async () => {
       const fetchedImages = await getImagesAction()
+      console.log(fetchedImages)
       setLoading(false)
       setImages(fetchedImages)
       setFilteredImages(fetchedImages)
@@ -26,8 +27,8 @@ const Library = () => {
     fetchImages()
   }, [])
 
-  const handleCopy = (imagePath: string) => {
-    navigator.clipboard.writeText(`${IMAGEHOSTNAME}${imagePath}`)
+  const handleCopy = (id: string) => {
+    navigator.clipboard.writeText(`${window.location.origin}/image/${id}`)
     setIsCopied(true)
     setTimeout(() => {
       setIsCopied(false)
@@ -84,7 +85,7 @@ const Library = () => {
                     <Copy
                       size={36}
                       onClick={() => {
-                        handleCopy(img.path)
+                        handleCopy(img.id)
                       }}
                     />
                     {isCopied && <span className="text-sm">Copied!</span>}
