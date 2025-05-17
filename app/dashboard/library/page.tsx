@@ -1,17 +1,14 @@
 'use client'
 
+import DisplayImages from '@/components/display-images'
 import { getImagesAction } from '@/actions/dashboard-actions'
 import { Input } from '@/components/ui/input'
 import { Image as ImageType } from '@/lib/generated/prisma'
-import { Copy } from 'lucide-react'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { IMAGEHOSTNAME } from '@/utils/constants'
 
 const Library = () => {
   const [images, setImages] = useState<ImageType[] | undefined>([])
   const [isLoading, setLoading] = useState(true)
-  const [isCopied, setIsCopied] = useState(false)
   const [filteredImages, setFilteredImages] = useState<ImageType[] | undefined>(
     images,
   )
@@ -19,21 +16,12 @@ const Library = () => {
   useEffect(() => {
     const fetchImages = async () => {
       const fetchedImages = await getImagesAction()
-      console.log(fetchedImages)
       setLoading(false)
       setImages(fetchedImages)
       setFilteredImages(fetchedImages)
     }
     fetchImages()
   }, [])
-
-  const handleCopy = (id: string) => {
-    navigator.clipboard.writeText(`${window.location.origin}/image/${id}`)
-    setIsCopied(true)
-    setTimeout(() => {
-      setIsCopied(false)
-    }, 1000)
-  }
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!images?.length) return
@@ -65,44 +53,7 @@ const Library = () => {
         className="my-8 w-1/2 self-center border-slate-500 border-2"
         onChange={handleSearch}
       />
-      <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-4">
-        {filteredImages!.length > 0 &&
-          filteredImages?.map((img) => {
-            const srcUrl =
-              `${IMAGEHOSTNAME}${img?.path}` || '/preview_collection.png'
-            return (
-              <div
-                className="flex flex-col items-center justify-center h-fit"
-                key={img?.path}
-              >
-                <div className="group w-full h-44 relative cursor-pointer border-4 border-black rounded-md overflow-hidden bg-black/80">
-                  <Image
-                    src={srcUrl}
-                    alt={img.id}
-                    width={100}
-                    height={100}
-                    className="w-full h-full object-cover duration-300 ease-in-out group-hover:scale-105 opacity-100 transition-opacity group-hover:opacity-10"
-                  />
-                  <div className="absolute text-center left-1/2 -translate-x-1/2 top-1/2 -translate-y-[50%] text-3xl text-white transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100">
-                    <Copy
-                      size={36}
-                      onClick={() => {
-                        handleCopy(img.id)
-                      }}
-                    />
-                    {isCopied && <span className="text-sm">Copied!</span>}
-                  </div>
-                </div>
-                <span className="text-slate-700 font-bold">
-                  Created at: {img.createdAt.toLocaleDateString()}
-                </span>
-                <span className="text-center text-slate-700 font-bold w-full not-hover:truncate">
-                  Name: {img.id.split('.')[0]}
-                </span>
-              </div>
-            )
-          })}
-      </div>
+      <DisplayImages images={filteredImages} />
     </div>
   )
 }
