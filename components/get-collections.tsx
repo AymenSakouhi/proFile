@@ -14,12 +14,12 @@ const GetCollections = async () => {
           ? IMAGEHOSTNAME + collection?.images[0]?.path
           : '/preview_collection.png'
         return (
-          <Link
-            href={`/dashboard/collections/${collection.id}`}
+          <div
             key={collection.id}
+            className="group relative flex flex-col items-center justify-between p-4 border-black border-2 rounded-md bg-slate-300"
           >
-            <div className="group relative flex flex-col items-center justify-between p-4 border-black border-2 rounded-md bg-slate-300">
-              <RemoveCollection collectionId={collection.id} />
+            <RemoveCollection collectionId={collection.id} />
+            <Link href={`/dashboard/collections/${collection.id}`}>
               <div className="w-full mt-8">
                 <Image
                   width={100}
@@ -35,8 +35,8 @@ const GetCollections = async () => {
               <div className="text-sm font-semibold text-black py-2 group-hover:scale-110 duration-300 ease-in-out">
                 Images in collection: {collection.images.length}
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
         )
       })}
     </>

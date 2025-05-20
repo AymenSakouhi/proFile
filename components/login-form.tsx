@@ -34,6 +34,7 @@ export function LoginForm({
       await signIn.email({
         email: value.email,
         password: value.password,
+        callbackURL: '/dashboard/collections',
       })
     },
   })

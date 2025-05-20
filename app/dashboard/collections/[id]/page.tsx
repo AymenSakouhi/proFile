@@ -24,7 +24,7 @@ const CollectionContent = async ({
   })
 
   if (!collection)
-    return <p>No collection found or you don't have access to it</p>
+    return <p>No collection found or you don`t have access to it</p>
   if (!collection.images.length) return <p>No images found</p>
 
   return (

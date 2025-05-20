@@ -73,6 +73,9 @@ export const getCollections = async () => {
     }
 
     const collections = await prisma.collection.findMany({
+      where: {
+        userId: session.user.id,
+      },
       include: {
         images: true,
       },

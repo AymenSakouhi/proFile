@@ -39,6 +39,7 @@ export function SignUpForm({
         name: value.name,
         email: value.email,
         password: value.password,
+        callbackURL: '/signin',
       })
     },
   })

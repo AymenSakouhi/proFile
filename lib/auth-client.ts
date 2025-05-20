@@ -13,5 +13,6 @@ export type User = Session['user']
 export const githubSignIn = async () => {
   await signIn.social({
     provider: 'github',
+    callbackURL: '/dashboard/collections',
   })
 }
