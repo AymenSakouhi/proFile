@@ -12,12 +12,14 @@ export default function RemoveCollection({ collectionId }: Props) {
 
   return (
     <>
-      <CircleX
-        className="absolute right-0 top-0 m-2 cursor-pointer"
-        onClick={() => {
-          setOpen(!open)
-        }}
-      />
+      <div className="bg-gray-500 rounded-full">
+        <CircleX
+          onClick={() => {
+            setOpen(!open)
+          }}
+          color="white"
+        />
+      </div>
       <RemoveCollectionDialog
         open={open}
         onOpenChange={setOpen}
