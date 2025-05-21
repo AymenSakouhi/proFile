@@ -14,6 +14,7 @@ export default function Library() {
     >
       {
         //this component is fetching data and its async
+        //TODO: Create an error boundary for all my suspenses
       }
       <GetLibraryImages />
     </Suspense>
