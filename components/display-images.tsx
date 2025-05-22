@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Copy } from 'lucide-react'
 import Image from 'next/image'
 
@@ -20,9 +20,14 @@ export default function DisplayImages({ images }: DisplayImagsesProps) {
       setIsCopied(false)
     }, 1000)
   }
+
+  if (!images) {
+    return <p>No images to display</p>
+  }
+
   return (
     <div className="grid md:grid-cols-3 xl:grid-cols-4 gap-4">
-      {images!.length > 0 &&
+      {images?.length > 0 &&
         images?.map((img) => {
           const srcUrl =
             `${IMAGEHOSTNAME}${img?.path}` || '/preview_collection.png'
