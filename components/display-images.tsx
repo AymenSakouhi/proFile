@@ -54,10 +54,10 @@ export default function DisplayImages({ images }: DisplayImagsesProps) {
                   {isCopied && <span className="text-sm">Copied!</span>}
                 </div>
               </div>
-              <span className="text-slate-700 font-bold">
+              <span className="text-foreground font-bold">
                 Created at: {img.createdAt.toLocaleDateString()}
               </span>
-              <span className="text-center text-slate-700 font-bold w-full not-hover:truncate">
+              <span className="text-center text-foreground font-bold w-full not-hover:truncate">
                 Name: {img.id.split('.')[0]}
               </span>
             </div>
