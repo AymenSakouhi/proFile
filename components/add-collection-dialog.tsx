@@ -59,13 +59,14 @@ export default function AddCollectionDialog({
               }}
             />
             {errors?.map((error: errorMessage) => (
-              <p key={error.message} className="text-red-500 text-sm">
+              <p key={error.message} className="text-foreground text-sm">
                 {error.message}
               </p>
             ))}
             <DialogFooter>
               <Button
                 type="submit"
+                className="text-foreground"
                 onClick={async () => {
                   const result = await addCollectionAction(
                     collectionName.trim(),

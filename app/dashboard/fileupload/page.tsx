@@ -23,15 +23,10 @@ export default async function FileUpload() {
 
   return (
     <>
-      <Card>
-        <CardContent className="p-6 space-y-4">
-          <h1 className="text-center text-2xl">
-            Please specify your image upload criteria
-          </h1>
-          <UploadSection collections={collections} />
-        </CardContent>
-        <CardFooter></CardFooter>
-      </Card>
+      <h1 className="text-center text-2xl mb-4">
+        Please specify your image upload criteria
+      </h1>
+      <UploadSection collections={collections} />
     </>
   )
 }

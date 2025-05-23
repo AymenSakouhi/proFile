@@ -16,9 +16,15 @@ type SelectBoxProps = {
   name: string
   items: CollectionsWithImagesType[] | undefined
   handleValueChange: (value: string) => void
+  className: string
 }
 
-export function SelectBox({ name, items, handleValueChange }: SelectBoxProps) {
+export function SelectBox({
+  name,
+  items,
+  handleValueChange,
+  className,
+}: SelectBoxProps) {
   if (!items)
     return (
       <p className="text-sm text-red-500">
@@ -27,7 +33,7 @@ export function SelectBox({ name, items, handleValueChange }: SelectBoxProps) {
     )
   return (
     <Select onValueChange={handleValueChange}>
-      <SelectTrigger className="w-full">
+      <SelectTrigger {...{ className }}>
         <SelectValue placeholder="Select an item" />
       </SelectTrigger>
       <SelectContent>
