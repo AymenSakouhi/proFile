@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 
 export default function Example() {
@@ -33,9 +34,12 @@ export default function Example() {
             </button>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
+            <Link
+              href="/signin"
+              className="text-sm/6 font-semibold text-gray-900"
+            >
               Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            </Link>
           </div>
         </nav>
       </header>
