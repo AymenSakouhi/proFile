@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-
 import {
   Dialog,
   DialogContent,
@@ -13,49 +12,48 @@ import {
 import { Button } from './ui/button'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
-
-import { addCollectionAction } from '@/actions/collection-actions'
-
+import { errorMessage } from './add-collection-dialog'
+import { checkImagePassword } from '@/actions/image-actions'
 import { useRouter } from 'next/navigation'
 
-type DialogProps = {
+type CheckPasswordDialogProps = {
   open: boolean
-  onOpenChange: (open: boolean) => void
+  onOpenChange: (foo: boolean) => void
+  imgId: string
 }
 
-export type errorMessage = { message: string }
-
-export default function AddCollectionDialog({
+export default function CheckPasswordDialog({
   open,
   onOpenChange,
-}: DialogProps) {
+  imgId,
+}: CheckPasswordDialogProps) {
   const router = useRouter()
-
-  const [collectionName, setCollectionName] = useState<string>('')
-  const [errors, setErrors] = useState<errorMessage[] | undefined>()
+  const [password, setPassword] = useState<string>('')
+  const [errors, setErrors] = useState<errorMessage[]>([])
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add your collection</DialogTitle>
+          <DialogTitle>What is the password for you image?</DialogTitle>
           <DialogDescription>
-            By adding your collection, you will be able to attach couple of
-            images to it later on
+            You got this link to see an image, but it is protected via a
+            password. Just type it in below.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="flex flex-col items-start gap-4">
             <Label htmlFor="name" className="text-right">
-              Name
+              Password
             </Label>
             <Input
-              id="name"
-              placeholder="Example: Gaming"
+              id="password"
+              placeholder="Example: MyPassword!!!!"
               className="col-span-3"
+              name="password"
               onChange={(e) => {
                 e.preventDefault()
-                setCollectionName(e.target.value)
+                setPassword(e.target.value)
               }}
             />
             {errors?.map((error: errorMessage) => (
@@ -68,21 +66,19 @@ export default function AddCollectionDialog({
                 type="submit"
                 className="text-foreground"
                 onClick={async () => {
-                  const result = await addCollectionAction(
-                    collectionName.trim(),
-                  )
-
+                  console.log('btn clicked')
+                  const result = await checkImagePassword(password, imgId)
                   if (result?.error) {
-                    setErrors(result?.error?.name)
+                    setErrors(result?.error?.password)
                   }
-
-                  if (result?.collection) {
+                  if (result?.image) {
                     onOpenChange(!open)
                     router.refresh()
+                    onOpenChange(!open)
                   }
                 }}
               >
-                Save
+                Check Password
               </Button>
             </DialogFooter>
           </div>

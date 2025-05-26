@@ -1,6 +1,7 @@
 import prisma from '@/lib/prisma'
 import Image from 'next/image'
 import { IMAGEHOSTNAME } from '@/utils/constants'
+import CheckPassword from '@/components/check-password'
 
 const ImageAccess = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params
@@ -16,15 +17,18 @@ const ImageAccess = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div className="bg-gray-800 h-screen flex items-center justify-center">
       {ImagePath ? (
-        <div className="">
-          <Image
-            className="w-full"
-            fill={true}
-            objectFit="contain"
-            src={ImagePath}
-            alt="your public image"
-          />
-        </div>
+        <>
+          <div className="w-full">
+            <Image
+              className={`${!image?.protected ? 'blur-lg' : ''} z-0`}
+              fill={true}
+              objectFit="contain"
+              src={ImagePath}
+              alt="your public image"
+            />
+            <CheckPassword imgId={id} />
+          </div>
+        </>
       ) : (
         <p className="text-white">Wrong ID, or image not accessible</p>
       )}

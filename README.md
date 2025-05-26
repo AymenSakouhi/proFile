@@ -64,3 +64,4 @@ Next Project suggestion for Discord Bot/Leetcoder: https://chatgpt.com/canvas/sh
 Next Project suggestion for TODO List: https://app.banani.co/preview/j0TOPuQ0g1ACCLmT5hpE
 Watch this: https://www.youtube.com/watch?v=MTcPrTIBkpA&ab_channel=Delba
 Watch this from Oskar: https://www.youtube.com/watch?v=JA4Vii3tyUk
+Check this vi website - shared by AntranigV: https://why-vi.rocks/

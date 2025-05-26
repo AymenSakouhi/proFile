@@ -2609,6 +2609,8 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
+    protected: boolean | null
+    protectionPassword: string | null
     collectionId: string | null
   }
 
@@ -2619,6 +2621,8 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
+    protected: boolean | null
+    protectionPassword: string | null
     collectionId: string | null
   }
 
@@ -2629,6 +2633,8 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     userId: number
+    protected: number
+    protectionPassword: number
     collectionId: number
     _all: number
   }
@@ -2641,6 +2647,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
+    protected?: true
+    protectionPassword?: true
     collectionId?: true
   }
 
@@ -2651,6 +2659,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
+    protected?: true
+    protectionPassword?: true
     collectionId?: true
   }
 
@@ -2661,6 +2671,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
+    protected?: true
+    protectionPassword?: true
     collectionId?: true
     _all?: true
   }
@@ -2744,6 +2756,8 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     userId: string
+    protected: boolean
+    protectionPassword: string
     collectionId: string | null
     _count: ImageCountAggregateOutputType | null
     _min: ImageMinAggregateOutputType | null
@@ -2771,6 +2785,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    protected?: boolean
+    protectionPassword?: boolean
     collectionId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     collection?: boolean | Image$collectionArgs<ExtArgs>
@@ -2783,6 +2799,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    protected?: boolean
+    protectionPassword?: boolean
     collectionId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     collection?: boolean | Image$collectionArgs<ExtArgs>
@@ -2795,6 +2813,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    protected?: boolean
+    protectionPassword?: boolean
     collectionId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     collection?: boolean | Image$collectionArgs<ExtArgs>
@@ -2807,10 +2827,12 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    protected?: boolean
+    protectionPassword?: boolean
     collectionId?: boolean
   }
 
-  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "path" | "createdAt" | "updatedAt" | "userId" | "collectionId", ExtArgs["result"]["image"]>
+  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "path" | "createdAt" | "updatedAt" | "userId" | "protected" | "protectionPassword" | "collectionId", ExtArgs["result"]["image"]>
   export type ImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     collection?: boolean | Image$collectionArgs<ExtArgs>
@@ -2837,6 +2859,8 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       userId: string
+      protected: boolean
+      protectionPassword: string
       collectionId: string | null
     }, ExtArgs["result"]["image"]>
     composites: {}
@@ -3269,6 +3293,8 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Image", 'DateTime'>
     readonly updatedAt: FieldRef<"Image", 'DateTime'>
     readonly userId: FieldRef<"Image", 'String'>
+    readonly protected: FieldRef<"Image", 'Boolean'>
+    readonly protectionPassword: FieldRef<"Image", 'String'>
     readonly collectionId: FieldRef<"Image", 'String'>
   }
     
@@ -8066,6 +8092,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId',
+    protected: 'protected',
+    protectionPassword: 'protectionPassword',
     collectionId: 'collectionId'
   };
 
@@ -8291,6 +8319,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Image"> | Date | string
     updatedAt?: DateTimeFilter<"Image"> | Date | string
     userId?: StringFilter<"Image"> | string
+    protected?: BoolFilter<"Image"> | boolean
+    protectionPassword?: StringFilter<"Image"> | string
     collectionId?: StringNullableFilter<"Image"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     collection?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
@@ -8303,6 +8333,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    protected?: SortOrder
+    protectionPassword?: SortOrder
     collectionId?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
     collection?: CollectionOrderByWithRelationInput
@@ -8318,6 +8350,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Image"> | Date | string
     updatedAt?: DateTimeFilter<"Image"> | Date | string
     userId?: StringFilter<"Image"> | string
+    protected?: BoolFilter<"Image"> | boolean
+    protectionPassword?: StringFilter<"Image"> | string
     collectionId?: StringNullableFilter<"Image"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     collection?: XOR<CollectionNullableScalarRelationFilter, CollectionWhereInput> | null
@@ -8330,6 +8364,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    protected?: SortOrder
+    protectionPassword?: SortOrder
     collectionId?: SortOrderInput | SortOrder
     _count?: ImageCountOrderByAggregateInput
     _max?: ImageMaxOrderByAggregateInput
@@ -8346,6 +8382,8 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Image"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Image"> | Date | string
     userId?: StringWithAggregatesFilter<"Image"> | string
+    protected?: BoolWithAggregatesFilter<"Image"> | boolean
+    protectionPassword?: StringWithAggregatesFilter<"Image"> | string
     collectionId?: StringNullableWithAggregatesFilter<"Image"> | string | null
   }
 
@@ -8711,6 +8749,8 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    protected?: boolean
+    protectionPassword?: string
     user: UserCreateNestedOneWithoutImagesInput
     collection?: CollectionCreateNestedOneWithoutImagesInput
   }
@@ -8722,6 +8762,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
+    protected?: boolean
+    protectionPassword?: string
     collectionId?: string | null
   }
 
@@ -8731,6 +8773,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutImagesNestedInput
     collection?: CollectionUpdateOneWithoutImagesNestedInput
   }
@@ -8742,6 +8786,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
     collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -8752,6 +8798,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
+    protected?: boolean
+    protectionPassword?: string
     collectionId?: string | null
   }
 
@@ -8761,6 +8809,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
   }
 
   export type ImageUncheckedUpdateManyInput = {
@@ -8770,6 +8820,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
     collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -9264,6 +9316,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    protected?: SortOrder
+    protectionPassword?: SortOrder
     collectionId?: SortOrder
   }
 
@@ -9274,6 +9328,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    protected?: SortOrder
+    protectionPassword?: SortOrder
     collectionId?: SortOrder
   }
 
@@ -9284,6 +9340,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    protected?: SortOrder
+    protectionPassword?: SortOrder
     collectionId?: SortOrder
   }
 
@@ -9985,6 +10043,8 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    protected?: boolean
+    protectionPassword?: string
     collection?: CollectionCreateNestedOneWithoutImagesInput
   }
 
@@ -9994,6 +10054,8 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    protected?: boolean
+    protectionPassword?: string
     collectionId?: string | null
   }
 
@@ -10123,6 +10185,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Image"> | Date | string
     updatedAt?: DateTimeFilter<"Image"> | Date | string
     userId?: StringFilter<"Image"> | string
+    protected?: BoolFilter<"Image"> | boolean
+    protectionPassword?: StringFilter<"Image"> | string
     collectionId?: StringNullableFilter<"Image"> | string | null
   }
 
@@ -10271,6 +10335,8 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    protected?: boolean
+    protectionPassword?: string
     user: UserCreateNestedOneWithoutImagesInput
   }
 
@@ -10281,6 +10347,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
+    protected?: boolean
+    protectionPassword?: string
   }
 
   export type ImageCreateOrConnectWithoutCollectionInput = {
@@ -10518,6 +10586,8 @@ export namespace Prisma {
     path: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    protected?: boolean
+    protectionPassword?: string
     collectionId?: string | null
   }
 
@@ -10619,6 +10689,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
     collection?: CollectionUpdateOneWithoutImagesNestedInput
   }
 
@@ -10628,6 +10700,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
     collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -10637,6 +10711,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
     collectionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -10647,6 +10723,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
+    protected?: boolean
+    protectionPassword?: string
   }
 
   export type ImageUpdateWithoutCollectionInput = {
@@ -10655,6 +10733,8 @@ export namespace Prisma {
     path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutImagesNestedInput
   }
 
@@ -10665,6 +10745,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
   }
 
   export type ImageUncheckedUpdateManyWithoutCollectionInput = {
@@ -10674,6 +10756,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    protected?: BoolFieldUpdateOperationsInput | boolean
+    protectionPassword?: StringFieldUpdateOperationsInput | string
   }
 
 
