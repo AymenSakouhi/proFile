@@ -66,7 +66,6 @@ export default function CheckPasswordDialog({
                 type="submit"
                 className="text-foreground"
                 onClick={async () => {
-                  console.log('btn clicked')
                   const result = await checkImagePassword(password, imgId)
                   if (result?.error) {
                     setErrors(result?.error?.password)
@@ -74,7 +73,6 @@ export default function CheckPasswordDialog({
                   if (result?.image) {
                     onOpenChange(!open)
                     router.refresh()
-                    onOpenChange(!open)
                   }
                 }}
               >

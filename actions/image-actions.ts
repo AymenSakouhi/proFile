@@ -4,7 +4,12 @@ import { passwordSchema } from '@/utils/schemas'
 import prisma from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 
-const secret = 'your-secret-here'
+export const findImageAction = async (id: string) =>
+  await prisma.image.findFirst({
+    where: {
+      id,
+    },
+  })
 
 export const checkImagePassword = async (password: string, id: string) => {
   try {
@@ -23,10 +28,18 @@ export const checkImagePassword = async (password: string, id: string) => {
       },
     })
 
-    // check for password if its correct
-
-    const hash = await bcrypt.hash(password, 10)
-    console.log('hash', hash)
+    if (!image) {
+      return {
+        error: [
+          {
+            message: 'Problem with finding an image',
+          },
+        ],
+      }
+    }
+    const isMatch = await bcrypt.compare(password, image?.protectionPassword)
+    console.log('hash', image?.protectionPassword)
+    console.log('isMatch', isMatch)
 
     return {
       error: null,

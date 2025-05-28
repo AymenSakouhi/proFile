@@ -39,10 +39,6 @@ export function UploadSection({ collections }: UploadSectionProps) {
       try {
         const response = await fetch('/api/upload', {
           method: 'POST',
-          /* body: JSON.stringify({
-            formData,
-            collectionName: selectedCollection,
-          }), */
           body: formData,
         })
         if (!response.ok) {

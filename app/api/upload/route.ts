@@ -39,7 +39,6 @@ export async function POST(req: NextRequest) {
         name: filename,
         path: completeFileName,
         userId: session?.user.id,
-        //TODO to go back to
         ...(collectionId && { collectionId }),
       },
     })
