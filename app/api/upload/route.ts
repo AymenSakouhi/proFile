@@ -4,6 +4,7 @@ import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
 import prisma from '@/lib/prisma'
 import { uploadToS3 } from '@/utils/utils'
+import bcrypt from 'bcryptjs'
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData()
@@ -14,6 +15,7 @@ export async function POST(req: NextRequest) {
   const file = formData.get('file') as File
   const collectionId = formData.get('collectionId') as string
   const password = formData.get('password') as string
+  const hash = await bcrypt.hash(password, 10)
 
   if (!file) {
     return new Response('Error', {
@@ -41,7 +43,7 @@ export async function POST(req: NextRequest) {
         path: completeFileName,
         userId: session?.user.id,
         ...(collectionId && { collectionId }),
-        ...(password && { protectionPassword: password, protected: true }),
+        ...(password && { protectionPassword: hash, protected: true }),
       },
     })
   }
