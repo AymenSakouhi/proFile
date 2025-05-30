@@ -11,9 +11,10 @@ export async function GET(
     }
   },
 ) {
+  const { id } = await params
   const image = await prisma.image.findFirst({
     where: {
-      id: params.id,
+      id,
     },
   })
 

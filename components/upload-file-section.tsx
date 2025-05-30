@@ -9,15 +9,8 @@ import { FileIcon } from 'lucide-react'
 import { SelectBox } from '@/components/select-box'
 import type { CollectionsWithImagesType } from '@/app/dashboard/fileupload/page'
 
-import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
 
 type UploadSectionProps = {
   collections: CollectionsWithImagesType[] | undefined
@@ -28,6 +21,7 @@ export function UploadSection({ collections }: UploadSectionProps) {
   const [selectedCollection, setSelectedCollection] = useState<string | null>(
     null,
   )
+  const [password, setPassword] = useState('')
 
   const handleUploadFile = async (files: File[]) => {
     if (!files.length) return
@@ -36,6 +30,7 @@ export function UploadSection({ collections }: UploadSectionProps) {
       formData.append('file', file)
       if (selectedCollection)
         formData.append('collectionId', selectedCollection)
+      if (password) formData.append('password', password)
       try {
         const response = await fetch('/api/upload', {
           method: 'POST',
@@ -96,37 +91,44 @@ export function UploadSection({ collections }: UploadSectionProps) {
   }, [files])
 
   return (
-    <>
-      <section className="container p-4 space-y-6 flex flex-col items-center m-auto w-full">
-        <p>Select the collection where you are uploading your files:</p>
-        <SelectBox
-          name="collections"
-          items={collections}
-          handleValueChange={(value) => {
-            setSelectedCollection(value)
-          }}
-          className="w-full lg:w-1/3"
-        />
-        <Card className="w-full lg:w-10/12">
-          <CardContent>
-            <div
-              {...getRootProps({ className: 'dropzone' })}
-              className="rounded-lg flex flex-col gap-1 p-6 items-center justify-center border-2 border-foreground border-dashed xs:w-full h-64"
-            >
-              <FileIcon className="w-12 h-12" />
-              <input {...getInputProps()} max={1} />
-              {isDragActive ? (
-                <div className="text-sm font-medium">Drop your file here!</div>
-              ) : (
-                <p className="text-sm font-medium">
-                  Drag and drop some files here, or click to select files
-                </p>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-        <aside>{thumbs}</aside>
-      </section>
-    </>
+    <section className="container p-4 space-y-6 flex flex-col items-center m-auto w-full">
+      <p>Select the collection where you are uploading your files:</p>
+      <SelectBox
+        name="collections"
+        items={collections}
+        handleValueChange={(value) => {
+          setSelectedCollection(value)
+        }}
+        className="w-full lg:w-1/3"
+      />
+      <Input
+        className="w-full lg:w-1/3"
+        type="text"
+        placeholder="Type a password if needed"
+        value={password}
+        onChange={(e) => {
+          setPassword(e.target.value)
+        }}
+      />
+      <Card className="w-full lg:w-10/12">
+        <CardContent>
+          <div
+            {...getRootProps({ className: 'dropzone' })}
+            className="rounded-lg flex flex-col gap-1 p-6 items-center justify-center border-2 border-foreground border-dashed xs:w-full h-64"
+          >
+            <FileIcon className="w-12 h-12" />
+            <input {...getInputProps()} max={1} />
+            {isDragActive ? (
+              <div className="text-sm font-medium">Drop your file here!</div>
+            ) : (
+              <p className="text-sm font-medium">
+                Drag and drop some files here, or click to select files
+              </p>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+      <aside>{thumbs}</aside>
+    </section>
   )
 }

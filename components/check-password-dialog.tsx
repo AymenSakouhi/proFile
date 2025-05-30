@@ -15,6 +15,8 @@ import { Input } from './ui/input'
 import { errorMessage } from './add-collection-dialog'
 import { checkImagePassword } from '@/actions/image-actions'
 import { useRouter } from 'next/navigation'
+import { imageProtectedAtom } from '@/app/image/_atoms'
+import { useAtom } from 'jotai'
 
 type CheckPasswordDialogProps = {
   open: boolean
@@ -30,6 +32,7 @@ export default function CheckPasswordDialog({
   const router = useRouter()
   const [password, setPassword] = useState<string>('')
   const [errors, setErrors] = useState<errorMessage[]>([])
+  const [isProtected, setIsProtected] = useAtom(imageProtectedAtom)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -72,6 +75,7 @@ export default function CheckPasswordDialog({
                   }
                   if (result?.image) {
                     onOpenChange(!open)
+                    setIsProtected(!isProtected)
                     router.refresh()
                   }
                 }}

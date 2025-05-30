@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
 
   const file = formData.get('file') as File
   const collectionId = formData.get('collectionId') as string
+  const password = formData.get('password') as string
 
   if (!file) {
     return new Response('Error', {
@@ -40,6 +41,7 @@ export async function POST(req: NextRequest) {
         path: completeFileName,
         userId: session?.user.id,
         ...(collectionId && { collectionId }),
+        ...(password && { protectionPassword: password, protected: true }),
       },
     })
   }

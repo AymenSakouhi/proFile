@@ -6,6 +6,8 @@ import { IMAGEHOSTNAME } from '@/utils/constants'
 import CheckPassword from '@/components/check-password'
 import { Image as ImageType } from '@/lib/generated/prisma'
 import { useParams } from 'next/navigation'
+import { imageProtectedAtom } from '@/app/image/_atoms'
+import { useAtom } from 'jotai'
 
 const ImageAccess = () => {
   const params = useParams()
@@ -13,6 +15,7 @@ const ImageAccess = () => {
 
   const [image, setImage] = useState<ImageType | null>(null)
   const [loading, setLoading] = useState(true)
+  const [isProtected, setIsProtected] = useAtom(imageProtectedAtom)
 
   useEffect(() => {
     const getImage = async () => {
@@ -22,6 +25,7 @@ const ImageAccess = () => {
         const data = await res.json()
         setImage(data.image)
         setLoading(false)
+        setIsProtected(data.image.protected)
       } catch (e) {
         console.error(e)
         setImage(null)
@@ -46,18 +50,18 @@ const ImageAccess = () => {
           <div className="w-full">
             {
               <Image
-                className={`${image?.protected ? 'blur-3xl' : ''} z-0`}
+                className={`${isProtected ? 'blur-3xl' : ''} z-0`}
                 fill={true}
                 objectFit="contain"
                 src={
-                  image?.path?.length && !image.protectionPassword
+                  image?.path?.length && isProtected === false
                     ? `${IMAGEHOSTNAME}${image?.path}`
                     : '/preview_collection_2.png'
                 }
                 alt="your public image"
               />
             }
-            {image?.protected && <CheckPassword imgId={id} />}
+            {isProtected && <CheckPassword imgId={id} />}
           </div>
         </>
       ) : (

@@ -59,9 +59,11 @@ To be decided: options include Vercel, Railway, Render, or DigitalOcean.
 ---
 
 Stay tuned as development progresses!
-
+HALL OF FAME
 Next Project suggestion for Discord Bot/Leetcoder: https://chatgpt.com/canvas/shared/6813d5538d94819198386197999f96e1
 Next Project suggestion for TODO List: https://app.banani.co/preview/j0TOPuQ0g1ACCLmT5hpE
 Watch this: https://www.youtube.com/watch?v=MTcPrTIBkpA&ab_channel=Delba
 Watch this from Oskar: https://www.youtube.com/watch?v=JA4Vii3tyUk
 Check this vi website - shared by AntranigV: https://why-vi.rocks/
+Chat with AI offline - shared by Poweropa: https://jan.ai/
+Checkout Tino's Gitcue at - https://gitcue.com/
