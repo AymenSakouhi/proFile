@@ -103,7 +103,7 @@ export function UploadSection({ collections }: UploadSectionProps) {
       />
       <Input
         className="w-full lg:w-1/3"
-        type="text"
+        type="password"
         placeholder="Type a password if needed"
         value={password}
         onChange={(e) => {

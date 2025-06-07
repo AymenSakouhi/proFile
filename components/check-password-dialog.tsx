@@ -51,6 +51,7 @@ export default function CheckPasswordDialog({
             </Label>
             <Input
               id="password"
+              type="password"
               placeholder="Example: MyPassword!!!!"
               className="col-span-3"
               name="password"
