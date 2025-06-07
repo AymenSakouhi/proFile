@@ -11,11 +11,13 @@ export async function POST(req: NextRequest) {
   const session = await auth.api.getSession({
     headers: await headers(),
   })
-
+  let hash = ''
   const file = formData.get('file') as File
   const collectionId = formData.get('collectionId') as string
   const password = formData.get('password') as string
-  const hash = await bcrypt.hash(password, 10)
+  if (password) {
+    hash = await bcrypt.hash(password, 10)
+  }
 
   if (!file) {
     return new Response('Error', {

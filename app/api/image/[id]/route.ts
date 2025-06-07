@@ -25,3 +25,29 @@ export async function GET(
     image,
   })
 }
+
+export async function DELETE(
+  req: Request,
+  {
+    params,
+  }: {
+    params: {
+      id: string
+    }
+  },
+) {
+  const { id } = await params
+  const image = await prisma.image.delete({
+    where: {
+      id,
+    },
+  })
+
+  if (!image) {
+    return NextResponse.json({ image: null, status: 404 })
+  }
+  return NextResponse.json({
+    image,
+    deleted: true,
+  })
+}

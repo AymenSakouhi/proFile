@@ -1,24 +1,39 @@
 'use client'
 
 import { useState } from 'react'
-import { Copy } from 'lucide-react'
+import { Copy, X } from 'lucide-react'
 import Image from 'next/image'
 
 import { Image as ImageType } from '@/lib/generated/prisma'
 import { IMAGEHOSTNAME } from '@/utils/constants'
+import { useRouter } from 'next/navigation'
 
 type DisplayImagsesProps = {
   images: ImageType[] | undefined
+  onDelete?: (id: string) => void
 }
 
-export default function DisplayImages({ images }: DisplayImagsesProps) {
+export default function DisplayImages({
+  images,
+  onDelete,
+}: DisplayImagsesProps) {
+  const router = useRouter()
   const [isCopied, setIsCopied] = useState(false)
+  const [isDisabledDeletion, setIsDisabledDeletion] = useState(false)
   const handleCopy = (id: string) => {
     navigator.clipboard.writeText(`${window.location.origin}/image/${id}`)
     setIsCopied(true)
     setTimeout(() => {
       setIsCopied(false)
     }, 1000)
+  }
+
+  const handleDelete = async (id: string) => {
+    const res = await fetch(`/api/image/${id}`, {
+      method: 'DELETE',
+    })
+    if (onDelete) onDelete(id)
+    return await res.json()
   }
 
   if (!images) {
@@ -54,6 +69,23 @@ export default function DisplayImages({ images }: DisplayImagsesProps) {
                   {isCopied && <span className="text-sm">Copied!</span>}
                 </div>
               </div>
+              <button
+                onClick={async () => {
+                  const result = await handleDelete(img.id)
+                  setIsDisabledDeletion(!isDisabledDeletion)
+                  if (result?.deleted) {
+                    console.log('router should refetch')
+                    setIsDisabledDeletion(false)
+                    if (!onDelete) {
+                      router.refresh()
+                    }
+                  }
+                }}
+                className={`${!isDisabledDeletion ? 'text-green-500' : 'text-red-500'}`}
+                disabled={isDisabledDeletion}
+              >
+                <X className="cursor-pointer" />
+              </button>
               <span className="text-foreground font-bold">
                 Created at: {img.createdAt.toLocaleDateString()}
               </span>
