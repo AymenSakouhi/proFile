@@ -24,7 +24,6 @@ const ImageAccess = () => {
         const res = await fetch(`/api/image/${id}`)
         const data = await res.json()
         setImage(data.image)
-        setLoading(false)
         setIsProtected(data.image.protected)
       } catch (e) {
         console.error(e)
@@ -34,6 +33,7 @@ const ImageAccess = () => {
       }
     }
     getImage()
+    //eslint-disable-next-line
   }, [id])
 
   if (loading)

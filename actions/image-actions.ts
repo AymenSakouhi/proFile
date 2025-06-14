@@ -33,7 +33,7 @@ export const deleteImageAction = async (id: string) => {
       error: null,
       deleted: !!result,
     }
-  } catch (error) {
+  } catch (e) {
     console.error(e)
   }
   // TODO we need also to add a function for deletion from AWS
@@ -58,16 +58,16 @@ export const checkImagePassword = async (password: string, id: string) => {
 
     if (!image) {
       return {
-        error: [
+        errors: [
           {
-            message: 'Problem with finding an image',
+            password: {
+              message: 'Problem with finding an image',
+            },
           },
         ],
       }
     }
     const isMatch = await bcrypt.compare(password, image?.protectionPassword)
-    console.log('hash', image?.protectionPassword)
-    console.log('isMatch', isMatch)
 
     return {
       error: null,
@@ -75,5 +75,14 @@ export const checkImagePassword = async (password: string, id: string) => {
     }
   } catch (e) {
     console.error(e)
+    return {
+      errors: [
+        {
+          password: {
+            message: 'Problem with checking password',
+          },
+        },
+      ],
+    }
   }
 }

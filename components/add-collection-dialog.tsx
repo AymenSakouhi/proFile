@@ -32,7 +32,7 @@ export default function AddCollectionDialog({
   const router = useRouter()
 
   const [collectionName, setCollectionName] = useState<string>('')
-  const [errors, setErrors] = useState<errorMessage[] | undefined>()
+  const [errors, setErrors] = useState<errorMessage[]>()
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -59,8 +59,8 @@ export default function AddCollectionDialog({
               }}
             />
             {errors?.map((error: errorMessage) => (
-              <p key={error.message} className="text-foreground text-sm">
-                {error.message}
+              <p key={error?.message} className="text-foreground text-sm">
+                {error?.message}
               </p>
             ))}
             <DialogFooter>

@@ -6,9 +6,9 @@ export async function GET(
   {
     params,
   }: {
-    params: {
+    params: Promise<{
       id: string
-    }
+    }>
   },
 ) {
   const { id } = await params
@@ -31,9 +31,9 @@ export async function DELETE(
   {
     params,
   }: {
-    params: {
+    params: Promise<{
       id: string
-    }
+    }>
   },
 ) {
   const { id } = await params

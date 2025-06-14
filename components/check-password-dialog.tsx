@@ -31,7 +31,7 @@ export default function CheckPasswordDialog({
 }: CheckPasswordDialogProps) {
   const router = useRouter()
   const [password, setPassword] = useState<string>('')
-  const [errors, setErrors] = useState<errorMessage[]>([])
+  const [errors, setErrors] = useState<errorMessage[] | undefined>([])
   const [isProtected, setIsProtected] = useAtom(imageProtectedAtom)
 
   return (
@@ -61,8 +61,8 @@ export default function CheckPasswordDialog({
               }}
             />
             {errors?.map((error: errorMessage) => (
-              <p key={error.message} className="text-foreground text-sm">
-                {error.message}
+              <p key={error?.message} className="text-foreground text-sm">
+                {error?.message}
               </p>
             ))}
             <DialogFooter>

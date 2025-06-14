@@ -74,7 +74,6 @@ export default function DisplayImages({
                   const result = await handleDelete(img.id)
                   setIsDisabledDeletion(!isDisabledDeletion)
                   if (result?.deleted) {
-                    console.log('router should refetch')
                     setIsDisabledDeletion(false)
                     if (!onDelete) {
                       router.refresh()

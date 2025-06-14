@@ -1,5 +1,4 @@
 import React from 'react'
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { UploadSection } from '@/components/upload-file-section'
 import { getCollections } from '@/actions/collection-actions'
 import { Prisma } from '@/lib/generated/prisma'
